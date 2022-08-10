@@ -19,11 +19,11 @@
     <a href="https://github.com/rhpo/life.js/docs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://rhpo.github.io/life.js/demo/rotating-square/">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/rhpo/life.js/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="mailto:lifejs@ramey.ml">Request Feature</a>
   </p>
    
 </div>
