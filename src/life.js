@@ -1,61 +1,29 @@
-
-export const id = () => {
-    return 'xxxx-xxxx-xxxx-xxxx-xxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
-const eventify = (self) => {
-    self.events = {}
-
-    self.on = function (event, listener) {
-        if (typeof self.events[event] !== 'object') {
-            self.events[event] = []
-        }
-
-        self.events[event].push(listener)
-    }
-
-    self.removeListener = function (event, listener) {
-        let idx
-
-        if (typeof self.events[event] === 'object') {
-            idx = self.events[event].indexOf(listener)
-
-            if (idx > -1) {
-                self.events[event].splice(idx, 1)
-            }
-        }
-    }
-
-    self.emit = function (event) {
-        var i, listeners, length, args = [].slice.call(arguments, 1);
-
-        if (typeof self.events[event] === 'object') {
-            listeners = self.events[event].slice()
-            length = listeners.length
-
-            for (i = 0; i < length; i++) {
-                listeners[i].apply(self, args)
-            }
-        }
-    }
-
-    self.once = function (event, listener) {
-        self.on(event, function g() {
-            self.removeListener(event, g)
-            listener.apply(self, arguments)
-        })
-    }
-}
+export const id = () => Math.random().toString(36).substring(2, 9);
+import {
+    eventify
+} from './events.js';
 
 let getRandomName = () => {
-    let names = 'James;Robert;John;Michael;David;William;Richard;Joseph;Thomas;Charles;Christopher;Daniel;Matthew;Anthony;Mark;Donald;Steven;Paul;Andrew;Joshua;Kenneth;Kevin;Brian;George;Timothy;Ronald;Edward;Jason;Jeffrey;Ryan;Jacob;Gary;Nicholas;Eric;Jonathan;Stephen;Larry;Justin;Scott;Brandon;Benjamin;Samuel;Gregory;Alexander;Frank;Patrick;Raymond;Jack;Dennis;Jerry;Tyler;Aaron;Jose;Adam;Nathan;Henry;Douglas;Zachary;Peter;Kyle;Ethan;Walter;Noah;Jeremy;Christian;Keith;Roger;Terry;Gerald;Harold;Sean;Austin;Carl;Arthur;Lawrence;Dylan;Jesse;Jordan;Bryan;Billy;Joe;Bruce;Gabriel;Logan;Albert;Willie;Alan;Juan;Wayne;Elijah;Randy;Roy;Vincent;Ralph;Eugene;Russell;Bobby;Mason;Philip;Louis'.split(';');
+    const namelist = 'James;Robert;John;Michael;David;William;Richard;Joseph;Thomas;Charles;Christopher;Daniel;Matthew;Anthony;Mark;Donald;Steven;Paul;Andrew;Joshua;Kenneth;Kevin;Brian;George;Timothy;Ronald;Edward;Jason;Jeffrey;Ryan;Jacob;Gary;Nicholas;Eric;Jonathan;Stephen;Larry;Justin;Scott;Brandon;Benjamin;Samuel;Gregory;Alexander;Frank;Patrick;Raymond;Jack;Dennis;Jerry;Tyler;Aaron;Jose;Adam;Nathan;Henry;Douglas;Zachary;Peter;Kyle;Ethan;Walter;Noah;Jeremy;Christian;Keith;Roger;Terry;Gerald;Harold;Sean;Austin;Carl;Arthur;Lawrence;Dylan;Jesse;Jordan;Bryan;Billy;Joe;Bruce;Gabriel;Logan;Albert;Willie;Alan;Juan;Wayne;Elijah;Randy;Roy;Vincent;Ralph;Eugene;Russell;Bobby;Mason;Philip;Louis';
+    let names = namelist.split(';');
     return names[Math.floor(Math.random() * names.length)];
 }
 
+const createCopy = o => JSON.parse(JSON.stringify(o));
 const defined = e => e !== undefined && e !== null;
+
+CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+    if (w < 2 * r) r = w / 2;
+    if (h < 2 * r) r = h / 2;
+    this.beginPath();
+    this.moveTo(x + r, y);
+    this.arcTo(x + w, y, x + w, y + h, r);
+    this.arcTo(x + w, y + h, x, y + h, r);
+    this.arcTo(x, y + h, x, y, r);
+    this.arcTo(x, y, x + w, y, r);
+    this.closePath();
+    return this;
+}
 
 let workingWorld = {};
 
@@ -214,6 +182,14 @@ export class World {
                 this.mouse.x = e.offsetX;
                 this.mouse.y = e.offsetY;
             });
+            // outputs:
+            // this.sprites = {
+            //     'player': {
+            //         src: 'https://i.imgur.com/XqQXQ.png',
+            //         width: 32,
+            //         height: 32,
+            //         image: Image
+            //     }
 
             this.mousedown = props.mousedown || (() => { });
             this.mouseup = props.mouseup || (() => { });
@@ -318,7 +294,7 @@ export class World {
                         this.ctx.fill();
                         break;
                     case 'image':
-
+                        // draw a circle image
                         this.ctx.drawImage(props.image, -props.radius, -props.radius, props.radius * 2, props.radius * 2);
                         break;
                 }
@@ -332,7 +308,7 @@ export class World {
                         this.ctx.fill();
                         break;
                     case 'image':
-
+                        // draw a circle image
                         this.ctx.drawImage(props.image, -props.radius, -props.radius, props.radius * 2, props.radius * 2);
                         break;
                 }
@@ -425,9 +401,8 @@ export class World {
                             a.velocity.x = foo;
 
                             if (foo === 0) {
-
+                                // get which direction the object is moving
                             }
-
                             break;
                         case 'up':
                         case 'down':
@@ -442,6 +417,7 @@ export class World {
                 }
             }
 
+            // Call a.onFinishCollision(b) when a is not touching b anymore
             else if (!this.collision(a, b) && b.CCHas(a)) {
                 a.finishCollideWith(b);
                 b.finishCollideWith(a);
@@ -478,13 +454,13 @@ export class World {
             }
             optionalPrefixCallback && optionalPrefixCallback();
 
-
+            // organize the objects by their z-index
             this.Objects = this.Objects.sort((a, b) => a.zIndex - b.zIndex);
-
+            // make the objects with 'wall' tag first on the array
             this.Objects = this.Objects.sort((a, b) => a.tag === 'wall' ? -1 : 1);
             this.Objects.forEach(o => {
                 if (o.physics) {
-
+                    // if there is something under the object, do nothing
                     if (this.getElementsByType('border').some(b => this.collision(o, b))) {
                         o.velocity.y = 0;
                         o.velocity.x = 0;
@@ -493,7 +469,7 @@ export class World {
                                 o.cacheDirection = 'up';
                                 break;
                             case 'up':
-
+                                // o.cacheDirection = 'down';
                                 break;
                             case 'left':
                                 o.cacheDirection = 'right';
@@ -620,7 +596,7 @@ export class World {
 
         emptySpaceRanges.sort((a, b) => a.start - b.start);
 
-
+        // this will return: [{ start: 0, end: 100 }, { start: 200, end: 300 }]
     }
 
     oncePressed(key, callback) {
@@ -736,11 +712,10 @@ export class Shape {
             workingWorld.ctx.scale(1, -1);
             workingWorld.ctx.translate(0, -this.height);
         }
-        var ctx = workingWorld.ctx;
-        
         switch (this.type) {
             case 'rectangle':
                 if (this.pattern === 'color') {
+                    var ctx = workingWorld.ctx;
                     ctx.save();
                     // rotate the shape by keeping the center of rotation at the center of the shape
                     ctx.translate(this.x, this.y);
@@ -775,30 +750,21 @@ export class Shape {
 
                 break;
             case 'circle':
-                ctx.save();
-                    // rotate the shape by keeping the center of rotation at the center of the shape
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation * Math.PI / 180);
-                ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
-                ctx.beginPath();
-                ctx.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 2, 0, 2 * Math.PI);
-
-                ctx.fillStyle = this.pattern || this.background;
-                ctx.fill();
+                workingWorld.ctx.beginPath();
+                workingWorld.ctx.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 2, 0, 2 * Math.PI);
+                // arc cons
+                workingWorld.ctx.fillStyle = this.pattern || this.background;
+                workingWorld.ctx.fill();
                 break;
             case 'line':
-                ctx.save();
-                    // rotate the shape by keeping the center of rotation at the center of the shape
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation * Math.PI / 180);
-                ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
-                ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                ctx.lineTo(this.x + this.width, this.y + this.height);
-                ctx.strokeStyle = this.pattern || this.background;
-                ctx.stroke();
-                ctx.restore();// reset the canvas
-                    workingWorld.ctx.setTransform(1, 0, 0, 1, 0, 0);
+                workingWorld.ctx.beginPath();
+                workingWorld.ctx.moveTo(this.x, this.y);
+                workingWorld.ctx.lineTo(this.x + this.width, this.y + this.height);
+                workingWorld.ctx.strokeStyle = this.pattern || this.background;
+                workingWorld.ctx.stroke();
+                break;
+            case 'image':
+                workingWorld.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
                 break;
         }
         if (this.border) {
