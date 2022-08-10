@@ -79,6 +79,7 @@ highly flexible __API__.
 <strong name="nodejs">
 &nbsp;&nbsp;🌿 NodeJS <i>(for intellisence)</i> :
 </strong>
+<br><br>
 
  ```bash
 npm install -g life.js # Installing LifeJS
@@ -88,6 +89,7 @@ npm install -g life.js # Installing LifeJS
 &nbsp;&nbsp;🌐 Web 
     <strong>&bull; JavaScript</strong>
 </strong>
+<br><br>
 
  ```js
 import { World, Shape } from 'path/to/life.js';
