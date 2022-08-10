@@ -47,7 +47,9 @@
     </li>
     <li><a href="#usage">✋ Usage</a></li>
     <li><a href="#cdn">📕 CDN</a></li>
+    <li><a href="#exaples">🕹️ Code Examples</a></li>
     <li><a href="#docs">📖 Documentation</a></li>
+    <li><a href="#api">📚 API</a></li>
     <li><a href="#license">📜 License</a></li>
     <li><a href="#contact">👋 Contact</a></li>
      <li><a href="#about-author">👤 About the Author</a></li>
@@ -148,7 +150,7 @@ You can check **LifeJS** documentation [here (GitHub)](https://github.com/rhpo/l
 <br>
 <h1 name="api">📚 API</h1>
 
-You can check **LifeJS** *Application Programming Interface* (API) [here (GitHub)](https://github.com/rhpo/life.js/api). 
+You can check **LifeJS** *Application Programming Interface* (API) [here (GitHub)](https://github.com/rhpo/life.js/tree/main/api). 
 
 <br>
 <h1 name="license">📜 Licence (MIT)</h1>
