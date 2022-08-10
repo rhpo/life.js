@@ -47,6 +47,7 @@
     </li>
     <li><a href="#usage">✋ Usage</a></li>
     <li><a href="#cdn">📕 CDN</a></li>
+    <li><a href="#docs">📖 Documentation</a></li>
     <li><a href="#license">📜 License</a></li>
     <li><a href="#contact">👋 Contact</a></li>
      <li><a href="#about-author">👤 About the Author</a></li>
@@ -142,7 +143,7 @@ See? As simple as that.
 
 <h1 name="docs">📖 Documentation</h1>
 
-You can check **LifeJS** documentation [here (GitHub)](https://github.com/rhpo/life.js/docs). 
+You can check **LifeJS** documentation [here (GitHub)](https://github.com/rhpo/life.js/tree/main/docs). 
 
 <br>
 <h1 name="api">📚 API</h1>
