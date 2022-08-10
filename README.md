@@ -4,7 +4,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-<!--[![LinkedIn][linkedin-shield]][linkedin-url]-->
+[![Linkedin][linkedin-shield]][linkedin-url]
+[![Discord][discord-shield]][discord-url]
 
 # Life.JS &nbsp;&horbar;&nbsp; Gaming in JavaScript.
 <div align="center">
@@ -34,21 +35,20 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">🔍 About The Project</a>
     </li>
+    <li><a href="#why-choose">🤔 Why LifeJS?</a></li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">🛠️ Getting Started</a>
       <ul>
         <li><a href="#nodejs">🌿 NodeJS</a></li>
         <li><a href="#web">🌐 Web Browsers (VanillaJS)</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#usage">✋ Usage</a></li>
+    <li><a href="#cdn">📕 CDN</a></li>
+    <li><a href="#license">📜 License</a></li>
+    <li><a href="#contact">👋 Contact</a></li>
   </ol>
 </details>
 
@@ -96,7 +96,8 @@ import { World, Shape } from 'path/to/life.js';
 var world = new World ({ ... });  
 ```
 
-**✋ Usage :**
+<h1 name="usage">✋ Usage :</h1>
+
 ```js
 const { World, Shape } = require('life.js'); // ESM
 import { World as Level, Shape } from 'life.js' // TS 
@@ -157,6 +158,11 @@ The above copyright notice and this permission notice shall be included in all c
 ```THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.```
 
 <br>
+<h1 name="licence">👋 Contact:</h1>
+    <p>&bull; Email &nbsp;&horbar;&nbsp; <a href="mailto:lifejs@ramey.ml">lifejs@ramey.ml</a></p>
+    <p>&bull; Phone Number &nbsp;&horbar;&nbsp; <a href="tel+213553238410">+213 553 23 84 10</a></p>
+    <p>&bull; Discord &nbsp;&horbar;&nbsp; <a href="https://discord.gg/XXa7PpnMbq">(Life.JS  ―  Gaming in JavaScript)</a></p>
+<br>
 <h1 name="licence">👤 About the author:</h1>
 <ul>
     <p>&bull; Name &nbsp;&horbar;&nbsp; Ramy Hadid.</p>
@@ -166,7 +172,7 @@ The above copyright notice and this permission notice shall be included in all c
     <p>&bull; Instagram &nbsp;&horbar;&nbsp; <a href="https://www.linkedin.com/in/ramy-hadid-15aa70243/">@ramyhadid</a></p>
         <p>&bull; Discord &nbsp;&horbar;&nbsp; <a href="https://discord.com/users/751901651622690927">ramy#1539</a></p>
     <p>&bull; GitHub &nbsp;&horbar;&nbsp; <a href="https://www.github.com/rhpo">@rhpo</a></p>
-    <p>&bull; Email &nbsp;&horbar;&nbsp; <a href="https://www.linkedin.com/in/ramy-hadid-15aa70243/">me@ramey.ml</a></p>
+    <p>&bull; Email &nbsp;&horbar;&nbsp; <a href="mailto:me@ramey.ml">me@ramey.ml</a></p>
     <p>&bull; Programming Languages &nbsp;&horbar;&nbsp; C# &bull; Ruby &bull; NodeJS &bull; Julia.</p>
 </ul>
 
@@ -174,8 +180,6 @@ The above copyright notice and this permission notice shall be included in all c
 
 > Written by <a href="https://www.github.com/rhpo">@rhpo</a> with ❤️.
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/rhpo/life.js?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/rhpo/life.js?style=for-the-badge
@@ -187,4 +191,6 @@ The above copyright notice and this permission notice shall be included in all c
 [license-shield]: https://img.shields.io/github/license/rhpo/life.js?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[discord-shield]: https://img.shields.io/discord/1006994262174478377?color=7289da&label=Discord&logo=discord&logoColor=white&style=for-the-badge
+[discord-url]: https://discord.gg/XXa7PpnMbq
 [linkedin-url]: https://www.linkedin.com/in/ramy-hadid-15aa70243/
