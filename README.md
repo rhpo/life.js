@@ -1,5 +1,4 @@
 # Life.JS &nbsp;&horbar;&nbsp; Gaming in JavaScript.
-<img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="200">
 <p align="center">
 <img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="200">
 </p>
