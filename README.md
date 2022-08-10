@@ -45,7 +45,7 @@ See? As simple as that.
  ```bash
 npm install -g life.js # Installing LifeJS
 ```
-+ &nbsp;&nbsp;**✋ Usage :**
+&nbsp;&nbsp;**✋ Usage :**
 ```js
 const { World, Shape } = require('life.js'); // ESM
 import { World as Level, Shape } from 'life.js' // TS 
