@@ -1,4 +1,4 @@
-import { World, Shape } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?v=latest'
+import { World, Shape } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?'
 
 // Rotating Centered Square...
 const world = new World();
