@@ -736,15 +736,16 @@ export class Shape {
             workingWorld.ctx.scale(1, -1);
             workingWorld.ctx.translate(0, -this.height);
         }
+        var ctx = workingWorld.ctx;
+        
         switch (this.type) {
             case 'rectangle':
                 if (this.pattern === 'color') {
-                    var ctx = workingWorld.ctx;
                     ctx.save();
-
-                    ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+                    // rotate the shape by keeping the center of rotation at the center of the shape
+                    ctx.translate(this.x, this.y);
                     ctx.rotate(this.rotation * Math.PI / 180);
-                    ctx.translate(-(this.x + this.width / 2), -(this.y + this.height / 2));
+                    ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
                     ctx.fillStyle = this.background;
                     ctx.fillRect(this.x, this.y, this.width, this.height);
                     ctx.restore();
@@ -763,8 +764,10 @@ export class Shape {
 
                     var ctx = workingWorld.ctx;
                     ctx.save();
-                    ctx.translate(this.x + this.width, this.y + this.height);// move to the center of the shape
-                    ctx.rotate(this.rotation * Math.PI / 180);// rotate the canvas to the desired angle
+                    // rotate the shape by keeping the center of rotation at the center of the shape
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation * Math.PI / 180);
+                    ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
                     ctx.drawImage(this.background.image, - this.width, -this.height, this.width, this.height);// draw the image
                     ctx.restore();// reset the canvas
                     workingWorld.ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -772,21 +775,30 @@ export class Shape {
 
                 break;
             case 'circle':
-                workingWorld.ctx.beginPath();
-                workingWorld.ctx.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 2, 0, 2 * Math.PI);
+                ctx.save();
+                    // rotate the shape by keeping the center of rotation at the center of the shape
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
+                ctx.beginPath();
+                ctx.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 2, 0, 2 * Math.PI);
 
-                workingWorld.ctx.fillStyle = this.pattern || this.background;
-                workingWorld.ctx.fill();
+                ctx.fillStyle = this.pattern || this.background;
+                ctx.fill();
                 break;
             case 'line':
-                workingWorld.ctx.beginPath();
-                workingWorld.ctx.moveTo(this.x, this.y);
-                workingWorld.ctx.lineTo(this.x + this.width, this.y + this.height);
-                workingWorld.ctx.strokeStyle = this.pattern || this.background;
-                workingWorld.ctx.stroke();
-                break;
-            case 'image':
-                workingWorld.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+                ctx.save();
+                    // rotate the shape by keeping the center of rotation at the center of the shape
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x + this.width, this.y + this.height);
+                ctx.strokeStyle = this.pattern || this.background;
+                ctx.stroke();
+                ctx.restore();// reset the canvas
+                    workingWorld.ctx.setTransform(1, 0, 0, 1, 0, 0);
                 break;
         }
         if (this.border) {
