@@ -9,7 +9,7 @@
 
 # Life.JS &nbsp;&horbar;&nbsp; Gaming in JavaScript.
 <div align="center">
-<BR>
+<br>
    <img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="95">
 
    <h3 align="center">Life.JS</h3>
@@ -96,7 +96,7 @@ npm install -g life.js # Installing LifeJS
 import { World, Shape } from 'path/to/life.js';
 var world = new World ({ ... });  
 ```
-
+<br>
 <h1 name="usage">✋ Usage :</h1>
 
 ```js
