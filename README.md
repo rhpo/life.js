@@ -1,6 +1,9 @@
 # Life.JS &nbsp;&horbar;&nbsp; Gaming in JavaScript.
-<center>
 <img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="200">
+<p align="center">
+<img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="200">
+</p>
+
 </center>
 
 **Life.JS** is a web 2D *Pure, Extensible and Animated* JavaScript Game Engine written in VanillaJS in <u>2022</u>.
