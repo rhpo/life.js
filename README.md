@@ -103,7 +103,7 @@ const { World, Shape } = require('life.js'); // ESM
 import { World as Level, Shape } from 'life.js' // TS 
 ```
 <br>
-<h1 name="getting-started">&bull; 📕 CDN</h1>
+<h1 name="cdn">&bull; 📕 CDN</h1>
 
 [Life.min.js &nbsp;&horbar;&nbsp; Minimal Version](https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?v=latest) &nbsp;&bull;&nbsp; 17kb
 
