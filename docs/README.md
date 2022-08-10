@@ -1,0 +1,199 @@
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![Linkedin][linkedin-shield]][linkedin-url]
+[![Discord][discord-shield]][discord-url]
+
+# Life.JS &nbsp;&horbar;&nbsp; Documentation.
+<div align="center">
+<br>
+   <img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="86">
+
+   <h3 align="center">Life.JS</h3>
+
+  <p align="center">
+    <strong>Life.JS</strong> is a web 2D <i>Pure, Extensible and Animated</i> JavaScript Game Engine written in Pure JavaScript in <u>2022</u>.
+    <br />
+    <h3><u>~ Documentation ~</u></h3>
+    <a href="https://rhpo.github.io/life.js/demo/rotating-square/">View Demo</a>
+    ·
+    <a href="https://github.com/rhpo/life.js/issues">Report Bug</a>
+    ·
+    <a href="mailto:lifejs@ramey.ml">Request Feature</a>
+  </p>
+   
+</div>
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">🔍 About The Project</a>
+    </li>
+    <li><a href="#why-choose">🤔 Why LifeJS?</a></li>
+    <li>
+      <a href="#getting-started">🛠️ Getting Started</a>
+      <ul>
+        <li><a href="#nodejs">🌿 NodeJS</a></li>
+        <li><a href="#web">🌐 Web Browsers (VanillaJS)</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">✋ Usage</a></li>
+    <li><a href="#cdn">📕 CDN</a></li>
+    <li><a href="#license">📜 License</a></li>
+    <li><a href="#contact">👋 Contact</a></li>
+  </ol>
+</details>
+
+
+<hr>
+
+# 🔨 Importing necessary tools
+For this tutorial, we will need to import some tools to be able to make our game.
+
+Required Objects/Classes: &nbsp;&nbsp;<u>World</u> &nbsp;&bull;&nbsp; <u>Shape</u> &nbsp;&bull;&nbsp; <u>LoadImage</u> &nbsp;&bull;&nbsp; <u>Text</u>
+
++ Importing requirements:
+
+```js
+import {
+    World, 
+    Shape,
+    Text,
+    LoadImage
+} from 'cdn/path/to/life.js'
+```
+
+# Making your first World 🌍
+In this first step, we will be making our first world that holds everything we create later (like Shapes, Objects).
+<br>
+
+To create a world, we need to use the <u>World</u> class from the LifeJS API like so.
+```js
+const myWorld = new World( ...params );
+```
++ **Remember**: If there is no <u>canvas</u> provided in the World class constructor (params), *LifeJS* will automatically create a canvas and append it to the document's body.
+
+Let's say that we want a world with color <span style="background: #32a852;color:white;padding: 5px;padding-top:2.5px;padding-bottom:2.5px;border-radius: 5px;">#32a852</span> as a background, and we want to add limits to the world so there will be no overflow (Objects won't be able to leave the screen), we will do the following:
+
+```js 
+const myWorld = new World({
+    pattern: 'color',          //    Tell LifeJS: background = color (string).
+    background: '#32a852',
+    
+    hasLimits: true,             //  Enable Limits as we said previously.
+    border: {                   //   Style the borders 😎.
+       width: 1,               //    Border width: <Number>
+       pattern: 'color',      //     Pattern: <String>
+       background: 'black'   //      Background: <Any|String|Object>
+    }
+});
+```
+
+Nice! We created our first world! But why does it not appear yet? Oh! We didn't make the <u>Main</u> function that will make our world active and moving. Let's do it.
+
++ **Remember:** The main function is a piece of code that will be called over and over to keep out world running contrinously, generally, it will be called 60 times per second, seems familliar right? it's the <u>FPS (FramePerSecond)</u> default number 🙂.
+
+We will first declare a constant that has the number of **FPS** (*FramesPerSecond*), lets say we want 60FPS.
+```js
+const FPS = 60;
+```
+
+Then, we create the main function that controlls our Game.
+```js
+...
+
+const FPS = 60;
+function main() {
+    myWorld.update(); // ℹ️ Required in Main Funtion to Update the game.
+}
+
+var oneSecond = 1000;
+setInterval(main, oneSecond / FPS); // ⬅️ This will start the loop to
+                                   //  call the main function over
+                                  //   and over...
+```
++ Tada! Our game is showing the green color, it's our current world.
+
+But til now, everything seems to be boaring, let's add some objects, with the <u>Shape</u> class!
+
+# Making our first Shape🧍
+
++ We will make & add a person to our world. Let's give him the <span style="background: blue;color:white;padding: 5px;padding-top:2.5px;padding-bottom:2.5px;border-radius: 5px;">Blue</span> color.
+
+```js
+const player = new Shape({
+   type: 'rectangle',  // Type of the shape, can be: Rectangle, Circle... 
+   pattern: 'color',
+   background: 'blue',
+   
+   width: 25,       //  DIMENTION X   (Width)
+   height: 25,     //   DIMENTION Y  (Height)
+   
+   physics: true,  //   True, so we can make the square affected
+                  //    by gravity, or simply, to make it drop.
+});
+```
+
++ Here! We created our first shape, and it can drop too, nice. let's take outselfs to the next Step.
+
+# 🕹️ Controls
+Hi again! glad you made it till here.
+
+We will learn how to make your object move using ***specific Keys***, easy, just follow
+what I do.
+
++ Remeber the ***main function*** that we wrote last time? 
+We will now use it to get the ***key states***
+of the game, we will check if keys are *pressed*, if so, move the shape to the specific direction. We will do so by using the ``World.key.isPressed(keyString)`` function.
+
+```js
+function main() {
+    
+    if (myWorld.key.isPressed('ArrowLeft'))
+        player.move('left');
+        
+    else if (myWorld.key.isPressed('ArrowRight'))
+        player.move('right');
+
+    //  🔑 KeyboardEvent NamesList: https://shorturl.at/orTY6 (Mozilla Docs)
+    
+    myWorld.update();   // ℹ️ Preferably, updating our world must be at the
+                       //      end of the main function. To prevent graphical
+                      //       issues.
+}
+```
+
+**Test:** Press the left ArrowKey &nbsp;(⬅️),  and then the right Arrow Key  &nbsp;(➡️), the shape will start moving!
+
++ **Remember:** You can set a specific speed when initialising a new ***Shape*** instance, using the ``speed:`` property ``<Number>``.<br><br>
+And you can also set a gravity vector in the ***World*** instance using the ``G:`` property, Ex: ``G: { x: 0, y: 9.8 }``
+<br>
+<br>
+
+### 🙂 Happy Coding!
+<br>
+
+* Useful Links:
+<p>&bull; API &nbsp;&horbar;&nbsp; <a href="mailto:lifejs@ramey.ml">Check LifeJS API</a></p>
+
+
+> Written by <a href="https://www.github.com/rhpo">@rhpo</a> with ❤️.
+
+[contributors-shield]: https://img.shields.io/github/contributors/rhpo/life.js?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/rhpo/life.js?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/rhpo/life.js?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/rhpo/life.js?style=for-the-badge
+[issues-url]: https://github.com/rhpo/life.js/issues
+[license-shield]: https://img.shields.io/github/license/rhpo/life.js?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[discord-shield]: https://img.shields.io/discord/1006994262174478377?color=7289da&label=Discord&logo=discord&logoColor=white&style=for-the-badge
+[discord-url]: https://discord.gg/XXa7PpnMbq
+[linkedin-url]: https://www.linkedin.com/in/ramy-hadid-15aa70243/
