@@ -30,32 +30,22 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">🔍 About The Project</a>
-    </li>
-    <li><a href="#why-choose">🤔 Why LifeJS?</a></li>
-    <li>
-      <a href="#getting-started">🛠️ Getting Started</a>
-      <ul>
-        <li><a href="#nodejs">🌿 NodeJS</a></li>
-        <li><a href="#web">🌐 Web Browsers (VanillaJS)</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">✋ Usage</a></li>
-    <li><a href="#cdn">📕 CDN</a></li>
-    <li><a href="#license">📜 License</a></li>
-    <li><a href="#contact">👋 Contact</a></li>
+    <li><a href="#importing">🔨 Importing necessary tools</a></li>
+    <li><a href="#first-world">🌍 Making your first World</a></li>
+    <li><a href="#first-shape">🧍  Making our first Shape</a></li>
+    <li><a href="#controls">🕹 Controls</a></li>
   </ol>
 </details>
 
 
 <hr>
 
-# 🔨 Importing necessary tools
+<h1 name="importing">&bull; Importing necessary tools 🔨</h1>
+
 For this tutorial, we will need to import some tools to be able to make our game.
++ **Required Objects/Classes** &nbsp;&nbsp;&horbar; &nbsp;&nbsp;<u>World</u> &nbsp;&bull;&nbsp; <u>Shape</u> &nbsp;&bull;&nbsp; <u>LoadImage</u> &nbsp;&bull;&nbsp; <u>Text</u> .
 
-Required Objects/Classes: &nbsp;&nbsp;<u>World</u> &nbsp;&bull;&nbsp; <u>Shape</u> &nbsp;&bull;&nbsp; <u>LoadImage</u> &nbsp;&bull;&nbsp; <u>Text</u>
-
+For sure, there is alot of tools in **LifeJS**, we will be representing the basic and nessesary ones. If you want to learn everything, do it yourself by reading our API.
 + Importing requirements:
 
 ```js
@@ -66,8 +56,9 @@ import {
     LoadImage
 } from 'cdn/path/to/life.js'
 ```
+<br>
 
-# Making your first World 🌍
+<h1 name="first-world">&bull; Making your first World 🌍</h1>
 In this first step, we will be making our first world that holds everything we create later (like Shapes, Objects).
 <br>
 
@@ -119,8 +110,9 @@ setInterval(main, oneSecond / FPS); // ⬅️ This will start the loop to
 + Tada! Our game is showing the green color, it's our current world.
 
 But til now, everything seems to be boaring, let's add some objects, with the <u>Shape</u> class!
-
-# Making our first Shape🧍
+<br>
+<br>
+<h1 name="first-shape">&bull; Making our first Shape🧍</h1>
 
 + We will make & add a person to our world. Let's give him the <span style="background: blue;color:white;padding: 5px;padding-top:2.5px;padding-bottom:2.5px;border-radius: 5px;">Blue</span> color.
 
@@ -140,7 +132,7 @@ const player = new Shape({
 
 + Here! We created our first shape, and it can drop too, nice. let's take outselfs to the next Step.
 
-# 🕹️ Controls
+<h1 name="controls">&bull; 🕹️ Controls</h1>
 Hi again! glad you made it till here.
 
 We will learn how to make your object move using ***specific Keys***, easy, just follow
@@ -172,14 +164,13 @@ function main() {
 + **Remember:** You can set a specific speed when initialising a new ***Shape*** instance, using the ``speed:`` property ``<Number>``.<br><br>
 And you can also set a gravity vector in the ***World*** instance using the ``G:`` property, Ex: ``G: { x: 0, y: 9.8 }``
 <br>
-<br>
 
 ### 🙂 Happy Coding!
 <br>
 
 * Useful Links:
-<p>&bull; API &nbsp;&horbar;&nbsp; <a href="mailto:lifejs@ramey.ml">Check LifeJS API</a></p>
-
+<p>&bull; API &nbsp;&horbar;&nbsp; <a href="https://github.com/rhpo/life.js/tree/main/api">Check LifeJS API</a></p>
+<br>
 
 > Written by <a href="https://www.github.com/rhpo">@rhpo</a> with ❤️.
 
