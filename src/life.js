@@ -1,31 +1,52 @@
-export const id = () => Math.random().toString(36).substring(2, 9);
-import {
-    eventify
-} from './events.js';
+const eventify = self => {
+    self.events = {}
 
-let getRandomName = () => {
+    self.on = function (event, listener) {
+        if (typeof self.events[event] !== 'object') {
+            self.events[event] = []
+        }
+
+        self.events[event].push(listener)
+    }
+
+    self.removeListener = function (event, listener) {
+        let idx
+
+        if (typeof self.events[event] === 'object') {
+            idx = self.events[event].indexOf(listener)
+
+            if (idx > -1) {
+                self.events[event].splice(idx, 1)
+            }
+        }
+    }
+
+    self.emit = function (event) {
+        var i, listeners, length, args = [].slice.call(arguments, 1);
+
+        if (typeof self.events[event] === 'object') {
+            listeners = self.events[event].slice()
+            length = listeners.length
+
+            for (i = 0; i < length; i++) {
+                listeners[i].apply(self, args)
+            }
+        }
+    }
+
+    self.once = function (event, listener) {
+        self.on(event, function g() {
+            self.removeListener(event, g)
+            listener.apply(self, arguments)
+        })
+    }
+}
+
+export const id = () => Math.random().toString(36).substring(2, 9), getRandomName = () => {
     const namelist = 'James;Robert;John;Michael;David;William;Richard;Joseph;Thomas;Charles;Christopher;Daniel;Matthew;Anthony;Mark;Donald;Steven;Paul;Andrew;Joshua;Kenneth;Kevin;Brian;George;Timothy;Ronald;Edward;Jason;Jeffrey;Ryan;Jacob;Gary;Nicholas;Eric;Jonathan;Stephen;Larry;Justin;Scott;Brandon;Benjamin;Samuel;Gregory;Alexander;Frank;Patrick;Raymond;Jack;Dennis;Jerry;Tyler;Aaron;Jose;Adam;Nathan;Henry;Douglas;Zachary;Peter;Kyle;Ethan;Walter;Noah;Jeremy;Christian;Keith;Roger;Terry;Gerald;Harold;Sean;Austin;Carl;Arthur;Lawrence;Dylan;Jesse;Jordan;Bryan;Billy;Joe;Bruce;Gabriel;Logan;Albert;Willie;Alan;Juan;Wayne;Elijah;Randy;Roy;Vincent;Ralph;Eugene;Russell;Bobby;Mason;Philip;Louis';
     let names = namelist.split(';');
     return names[Math.floor(Math.random() * names.length)];
-}
-
-const createCopy = o => JSON.parse(JSON.stringify(o));
-const defined = e => e !== undefined && e !== null;
-
-CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
-    if (w < 2 * r) r = w / 2;
-    if (h < 2 * r) r = h / 2;
-    this.beginPath();
-    this.moveTo(x + r, y);
-    this.arcTo(x + w, y, x + w, y + h, r);
-    this.arcTo(x + w, y + h, x, y + h, r);
-    this.arcTo(x, y + h, x, y, r);
-    this.arcTo(x, y, x + w, y, r);
-    this.closePath();
-    return this;
-}
-
-let workingWorld = {};
+}, defined = e => e !== undefined && e !== null, workingWorld = {};
 
 export class World {
     constructor(props = {
