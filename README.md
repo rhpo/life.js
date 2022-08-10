@@ -10,7 +10,7 @@
 # Life.JS &nbsp;&horbar;&nbsp; Gaming in JavaScript.
 <div align="center">
 <BR>
-   <img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="86">
+   <img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="95">
 
    <h3 align="center">Life.JS</h3>
 
