@@ -43,18 +43,18 @@ See? As simple as that.
 # &bull; 🛠️ Installation...
 &nbsp;&nbsp;**🌿 NodeJS *(for intellisence)* :**
  ```bash
-     npm install -g life.js # Installing LifeJS
+npm install -g life.js # Installing LifeJS
 ```
 + &nbsp;&nbsp;**✋ Usage :**
 ```js
-        const { World, Shape } = require('life.js'); // ESM
-        import { World as Level, Shape } from 'life.js' // TS 
+const { World, Shape } = require('life.js'); // ESM
+import { World as Level, Shape } from 'life.js' // TS 
 ```
 
 &nbsp;&nbsp;**🌐 Web *(JavaScript)* :**
  ```js
-     import { World, Shape } from 'path/to/life.js';
-     var world = new World({...});  
+import { World, Shape } from 'path/to/life.js';
+var world = new World({...});  
 ```
 
 
