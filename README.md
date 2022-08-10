@@ -109,9 +109,9 @@ import { World as Level, Shape } from 'life.js' // TS
 <br>
 <h1 name="cdn">&bull; 📕 CDN</h1>
 
-[Life.min.js &nbsp;&horbar;&nbsp; Minimal Version](https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?v=latest) &nbsp;&bull;&nbsp; 17kb
+[Life.min.js &nbsp;&horbar;&nbsp; Minimal Version](https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?) &nbsp;&bull;&nbsp; 17kb
 
-[Life.js &nbsp;&horbar;&nbsp; Classic Version (Not minimized)](https://gitcdn.link/cdn/rhpo/life.js/main/src/life.js?v=latest) &nbsp;&bull;&nbsp; 33kb
+[Life.js &nbsp;&horbar;&nbsp; Classic Version (Not minimized)](https://gitcdn.link/cdn/rhpo/life.js/main/src/life.js?) &nbsp;&bull;&nbsp; 33kb
 
 <br>
 <h1 name="examples">&bull; 🕹️ Code Examples</h1>
