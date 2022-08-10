@@ -97,7 +97,7 @@ import { World, Shape } from 'path/to/life.js';
 var world = new World ({ ... });  
 ```
 <br>
-<h1 name="usage">✋ Usage :</h1>
+<h1 name="usage">&bull; ✋ Usage :</h1>
 
 ```js
 const { World, Shape } = require('life.js'); // ESM
