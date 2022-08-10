@@ -12,11 +12,11 @@ const square = new Shape({
     rotation: 0,
 });
 
-world.center(square) // • Make the square centered in the Screen.
-
 const FPS = 60;
 function Main() {
     world.update();    // • Update The World on each Frame.
     square.rotate(0.5); //  • Rotate the Square.
+
+    world.center(square) // • Make the square centered in the Screen.
 }
 setInterval(Main, 1000 / FPS);
