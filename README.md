@@ -49,6 +49,7 @@
     <li><a href="#cdn">📕 CDN</a></li>
     <li><a href="#license">📜 License</a></li>
     <li><a href="#contact">👋 Contact</a></li>
+     <li><a href="#about-author">👤 About the Author</a></li>
   </ol>
 </details>
 
@@ -158,12 +159,12 @@ The above copyright notice and this permission notice shall be included in all c
 ```THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.```
 
 <br>
-<h1 name="licence">👋 Contact:</h1>
+<h1 name="contact">👋 Contact:</h1>
     <p>&bull; Email &nbsp;&horbar;&nbsp; <a href="mailto:lifejs@ramey.ml">lifejs@ramey.ml</a></p>
     <p>&bull; Phone Number &nbsp;&horbar;&nbsp; <a href="tel+213553238410">+213 553 23 84 10</a></p>
     <p>&bull; Discord &nbsp;&horbar;&nbsp; <a href="https://discord.gg/XXa7PpnMbq">(Life.JS  ―  Gaming in JavaScript)</a></p>
 <br>
-<h1 name="licence">👤 About the author:</h1>
+<h1 name="about-author">👤 About the author:</h1>
 <ul>
     <p>&bull; Name &nbsp;&horbar;&nbsp; Ramy Hadid.</p>
     <p>&bull; Age &nbsp;&horbar;&nbsp; 17 Years old.</p>
