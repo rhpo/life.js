@@ -1,3 +1,10 @@
+export const id = () => Math.random().toString(36).substring(2, 9), getRandomName = () => {
+    const namelist = 'James;Robert;John;Michael;David;William;Richard;Joseph;Thomas;Charles;Christopher;Daniel;Matthew;Anthony;Mark;Donald;Steven;Paul;Andrew;Joshua;Kenneth;Kevin;Brian;George;Timothy;Ronald;Edward;Jason;Jeffrey;Ryan;Jacob;Gary;Nicholas;Eric;Jonathan;Stephen;Larry;Justin;Scott;Brandon;Benjamin;Samuel;Gregory;Alexander;Frank;Patrick;Raymond;Jack;Dennis;Jerry;Tyler;Aaron;Jose;Adam;Nathan;Henry;Douglas;Zachary;Peter;Kyle;Ethan;Walter;Noah;Jeremy;Christian;Keith;Roger;Terry;Gerald;Harold;Sean;Austin;Carl;Arthur;Lawrence;Dylan;Jesse;Jordan;Bryan;Billy;Joe;Bruce;Gabriel;Logan;Albert;Willie;Alan;Juan;Wayne;Elijah;Randy;Roy;Vincent;Ralph;Eugene;Russell;Bobby;Mason;Philip;Louis';
+    let names = namelist.split(';');
+    return names[Math.floor(Math.random() * names.length)];
+}, defined = e => e !== undefined && e !== null;
+let workingWorld = {};
+
 const eventify = self => {
     self.events = {}
 
@@ -42,12 +49,7 @@ const eventify = self => {
     }
 }
 
-export const id = () => Math.random().toString(36).substring(2, 9), getRandomName = () => {
-    const namelist = 'James;Robert;John;Michael;David;William;Richard;Joseph;Thomas;Charles;Christopher;Daniel;Matthew;Anthony;Mark;Donald;Steven;Paul;Andrew;Joshua;Kenneth;Kevin;Brian;George;Timothy;Ronald;Edward;Jason;Jeffrey;Ryan;Jacob;Gary;Nicholas;Eric;Jonathan;Stephen;Larry;Justin;Scott;Brandon;Benjamin;Samuel;Gregory;Alexander;Frank;Patrick;Raymond;Jack;Dennis;Jerry;Tyler;Aaron;Jose;Adam;Nathan;Henry;Douglas;Zachary;Peter;Kyle;Ethan;Walter;Noah;Jeremy;Christian;Keith;Roger;Terry;Gerald;Harold;Sean;Austin;Carl;Arthur;Lawrence;Dylan;Jesse;Jordan;Bryan;Billy;Joe;Bruce;Gabriel;Logan;Albert;Willie;Alan;Juan;Wayne;Elijah;Randy;Roy;Vincent;Ralph;Eugene;Russell;Bobby;Mason;Philip;Louis';
-    let names = namelist.split(';');
-    return names[Math.floor(Math.random() * names.length)];
-}, defined = e => e !== undefined && e !== null;
-let workingWorld = {};
+// START OF THE LIFE.JS LIBRARY ---
 
 export class World {
     constructor(props = {
@@ -644,7 +646,7 @@ export class Shape {
         tag: 'unknown',
         onCollision: (a, b) => console.log('Collided with:', b.name),
         onFinishCollision: (a, b) => console.log('Finished colliding with:', b.name),
-        physics: false,
+        physics: true,
         rebound: 0.9,
         friction: 0.5,
         id: id(),
@@ -688,7 +690,7 @@ export class Shape {
         this.onCollision = props.onCollision || /* ((a, b) => console.log('Collided with:', b.name)); */ (() => { });
         this.onFinishCollision = props.onFinishCollision || /* ((a, b) => console.log('Finished colliding with:', b.name)); */(() => { });
         this.collitionObjects = [];
-        this.physics = props.physics !== undefined ? props.physics : false;
+        this.physics = props.physics !== undefined ? props.physics : true;
         this.rebound = props.rebound !== undefined ? props.rebound : 0.9;
         this.friction = props.friction !== undefined ? props.friction : 0.5;
 
@@ -737,16 +739,8 @@ export class Shape {
         switch (this.type) {
             case 'rectangle':
                 if (this.pattern === 'color') {
-                    var ctx = workingWorld.ctx;
-                    ctx.save();
-                    // rotate the shape by keeping the center of rotation at the center of the shape
-                    ctx.translate(this.x, this.y);
-                    ctx.rotate(this.rotation * Math.PI / 180);
-                    ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
-                    ctx.fillStyle = this.background;
-                    ctx.fillRect(this.x, this.y, this.width, this.height);
-                    ctx.restore();
-                    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset the transform
+                    workingWorld.ctx.fillStyle = this.background;
+                    workingWorld.ctx.fillRect(this.x, this.y, this.width, this.height);
                 }
                 if (this.pattern === 'gradient') {
                     if (!this.background.gradientSettings) throw new Error('ArgumentError: No gradient settings found!');
@@ -761,10 +755,8 @@ export class Shape {
 
                     var ctx = workingWorld.ctx;
                     ctx.save();
-                    // rotate the shape by keeping the center of rotation at the center of the shape
-                    ctx.translate(this.x, this.y);
-                    ctx.rotate(this.rotation * Math.PI / 180);
-                    ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
+                    ctx.translate(this.x + this.width, this.y + this.height);// move to the center of the shape
+                    ctx.rotate(this.rotation * Math.PI / 180);// rotate the canvas to the desired angle
                     ctx.drawImage(this.background.image, - this.width, -this.height, this.width, this.height);// draw the image
                     ctx.restore();// reset the canvas
                     workingWorld.ctx.setTransform(1, 0, 0, 1, 0, 0);
