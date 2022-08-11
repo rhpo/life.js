@@ -17,7 +17,7 @@
   <p align="center">
     <strong>Life.JS</strong> is a web 2D <i>Pure, Extensible and Animated</i> JavaScript Game Engine written in Pure JavaScript in <u>2022</u>.
     <br />
-    <a href="https://github.com/rhpo/life.js/docs"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/rhpo/life.js/tree/main/docs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://rhpo.github.io/life.js/demo/rotating-square/">View Demo</a>
