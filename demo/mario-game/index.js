@@ -15,7 +15,7 @@ const images = {
 
     ai1: './assets/AI1.png',
     ai2: './assets/AI2.png',
-    ai2blue: './assets/AI2blue.png',
+    ai2blue: './assets/AI2Blue.png',
     aidead: './assets/aidead.png',
 
     finish: './assets/finish.jpg',
