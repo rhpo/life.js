@@ -1,4 +1,4 @@
-import { Animation, LoadImage, LoadAudio, Shape, Text, World } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js';
+import { Animation, LoadImage, LoadAudio, Shape, Text, World, GameLoop } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js';
 
 const images = {
     ground: './assets/ground.png',
@@ -334,5 +334,5 @@ function main() {
 // setInterval(() => player.rotate(1), 10);
 
 const FPS = 60;
-let game = = new GameLoop(main, FPS);
+let game = new GameLoop(main, FPS);
 game.start();
