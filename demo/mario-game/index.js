@@ -334,5 +334,5 @@ function main() {
 // setInterval(() => player.rotate(1), 10);
 
 const FPS = 60;
-setInterval(main, 1000 / FPS);
-
+let game = = new GameLoop(main, FPS);
+game.start();
