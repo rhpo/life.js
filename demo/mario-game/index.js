@@ -15,13 +15,14 @@ const images = {
 
     ai1: './assets/AI1.png',
     ai2: './assets/AI2.png',
-    ai2blue: './assets/AI2Blue.png',
+    ai2blue: './assets/AI2blue.png',
     aidead: './assets/aidead.png',
 
     finish: './assets/finish.jpg',
     finish2: './assets/finish2.jpg',
 
     sky: 'https://png.pngtree.com/png-vector/20220614/ourmid/pngtree-white-pixel-fluffy-bubble-clouds-on-blue-sky-png-image_5089795.png',
+    skynight: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a53ef9bb-28c6-4f11-ad10-27c0096b5f0d/d9hk8i1-6be6a070-a2ac-465f-8694-26bdcf38a912.png/v1/fill/w_960,h_640,q_80,strp/night_sky_pixel_art_by_zlzhang_d9hk8i1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQwIiwicGF0aCI6IlwvZlwvYTUzZWY5YmItMjhjNi00ZjExLWFkMTAtMjdjMDA5NmI1ZjBkXC9kOWhrOGkxLTZiZTZhMDcwLWEyYWMtNDY1Zi04Njk0LTI2YmRjZjM4YTkxMi5wbmciLCJ3aWR0aCI6Ijw9OTYwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.A8fq6gSbOiC-SNJ_0NJC_ebKAYnEY3rP4_xO0SVB4JU'
 }
 
 const sounds = {
@@ -47,12 +48,12 @@ sounds.background.play();
 const world = new World({
     G: { x: 0, y: .7 },
     hasLimits: true,
-    // pattern: 'image',
-    // background: {
-    //     image: images.sky,
-    // },
-    pattern: 'color',
-    background: 'black',
+    pattern: 'image',
+    background: {
+        image: images.skynight,
+    },
+    // pattern: 'color',
+    // background: 'black',
     border: {
         pattern: 'color',
         background: 'transparent',
