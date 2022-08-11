@@ -96,15 +96,14 @@ Then, we create the main function that controlls our Game.
 ```js
 ...
 
-const FPS = 60;
 function main() {
     myWorld.update(); // ℹ️ Required in Main Funtion to Update the game.
 }
 
-var oneSecond = 1000;
-var game = new GameLoop(main, FPS); // ⬅️ This will create our game instance
-game.start();                      //  ⬅️ Start the loop, so 'main' will be called 
-                                  //   over and over...
+const FPS = 60;                       // ⬅️ Our FPS, setting condition: (a > 0)
+var game = new GameLoop(main, FPS);  //  ⬅️ This will create our game instance
+game.start();                       //   ⬅️ Start the loop, so 'main' will be called 
+                                   //    over and over...
 ```
 + Tada! Our game is showing the green color, it's our current world.
 
