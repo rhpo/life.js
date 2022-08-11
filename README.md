@@ -20,7 +20,7 @@
     <a href="https://github.com/rhpo/life.js/tree/main/docs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://rhpo.github.io/life.js/demo/rotating-square/">View Demo</a>
+    <a href="https://rhpo.github.io/life.js/demo/mario-game/">View Demo</a>
     ·
     <a href="https://github.com/rhpo/life.js/issues">Report Bug</a>
     ·
