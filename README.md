@@ -66,7 +66,7 @@ highly flexible __API__.
 
 + It works by creating instances of pre-given classes and saving their geopositions, dimentions in the object class itself. Then calling a function that draws the shape for each registered shape in the previously created <u>world instance</u>.
 
-+ It was written by a 17 years old developer from Algeria 🇩🇿 called *Ramy Hadid* for web game developement purpose.
++ It was written by a 17 years old developer from Algeria 🇩🇿 for web game developement purpose., his name is *Ramy Hadid*.
 
 + It's creation story, was that the developer was looking for developing a small browser game, he was then looking for game engines and libraries... Then noticed that all libraries have a complex to use API, he decided to make his own small Idea for making small 2D games, after a long time, this idea turned to be LifeJS.
 
