@@ -11,7 +11,7 @@
 <div align="center">
 <br>
    <img src="https://i.ibb.co/Fwk65L4/LIFE.png" width="86">
-
+   
    <h3 align="center">Life.JS</h3>
 
   <p align="center">
@@ -43,7 +43,7 @@
 <h1 name="importing">&bull; Importing necessary tools 🔨</h1>
 
 For this tutorial, we will need to import some tools to be able to make our game.
-+ **Required Objects/Classes** &nbsp;&nbsp;&horbar; &nbsp;&nbsp;<u>World</u> &nbsp;&bull;&nbsp; <u>Shape</u> &nbsp;&bull;&nbsp; <u>LoadImage</u> &nbsp;&bull;&nbsp; <u>Text</u> .
++ **Required Objects/Classes** &nbsp;&nbsp;&horbar; &nbsp;&nbsp;<u>World</u> &nbsp;&bull;&nbsp; <u>Shape</u> &nbsp;&bull;&nbsp; <u>GameLoop</u> .
 
 For sure, there is alot of tools in **LifeJS**, we will be representing the basic and nessesary ones. If you want to learn everything, do it yourself by reading our API.
 + Importing requirements:
@@ -52,8 +52,7 @@ For sure, there is alot of tools in **LifeJS**, we will be representing the basi
 import {
     World, 
     Shape,
-    Text,
-    LoadImage
+    GameLoop
 } from 'cdn/path/to/life.js'
 ```
 <br>
@@ -103,13 +102,13 @@ function main() {
 }
 
 var oneSecond = 1000;
-setInterval(main, oneSecond / FPS); // ⬅️ This will start the loop to
-                                   //  call the main function over
-                                  //   and over...
+var game = new GameLoop(main, FPS); // ⬅️ This will create our game instance
+game.start();                      //  ⬅️ Start the loop, so 'main' will be called 
+                                  //   over and over...
 ```
 + Tada! Our game is showing the green color, it's our current world.
 
-But til now, everything seems to be boaring, let's add some objects, with the <u>Shape</u> class!
+But til now, everything seems to be boring, let's add some objects, with the <u>Shape</u> class!
 <br>
 <br>
 <h1 name="first-shape">&bull; Making our first Shape🧍</h1>
