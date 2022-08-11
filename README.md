@@ -64,7 +64,7 @@
 **LifeJS** is a JavaScript Library to make 2D Animated Browser games with a 
 highly flexible __API__.
 
-+ It works by creating instances of pre-given classes and saving their geopositions, dimentions in the object class itself. Then calling a function that draws the shape for each registered shape in the previously created <u>world instance</u>.
++ It works by creating instances of pre-given classes and saving their geopositions, dimensions in the object class itself. Then calling a function that draws the shape for each registered shape in the previously created <u>world instance</u>.
 
 + It was written by a 17 years old developer from Algeria 🇩🇿 for web game developement purpose., his name is *Ramy Hadid*.
 
