@@ -45,7 +45,7 @@
 For this tutorial, we will need to import some tools to be able to make our game.
 + **Required Objects/Classes** &nbsp;&nbsp;&horbar; &nbsp;&nbsp;<u>World</u> &nbsp;&bull;&nbsp; <u>Shape</u> &nbsp;&bull;&nbsp; <u>GameLoop</u> .
 
-For sure, there is alot of tools in **LifeJS**, we will be representing the basic and necessary ones. If you want to learn everything, do it yourself by reading our API.
+For sure, there is a lot of tools in **LifeJS**, we will be representing the basic and necessary ones. If you want to learn everything, do it yourself by reading our API.
 + Importing requirements:
 
 ```js
@@ -85,14 +85,14 @@ const myWorld = new World({
 
 Nice! We created our first world! But why does it not appear yet? Oh! We didn't make the <u>Main</u> function that will make our world active and moving. Let's do it.
 
-+ **Remember:** The main function is a piece of code that will be called over and over to keep out world running Continiously, generally, it'll be called 60 times per second, seems familiar right? it's the <u>FPS (FramePerSecond)</u> default number 🙂.
++ **Remember:** The main function is a piece of code that will be called over and over to keep out world running Continuously, generally, it'll be called 60 times per second, seems familiar right? it's the <u>FPS (FramePerSecond)</u> default number 🙂.
 
 We will first declare a constant that has the number of **FPS** (*FramesPerSecond*), let's say we want *60FPS*.
 ```js
 const FPS = 60;
 ```
 
-Then, we create the main function that controlls our Game.
+Then, we create the main function that controls our Game.
 ```js
 ...
 
@@ -107,7 +107,7 @@ game.start();                       //   ⬅️ Start the loop, so 'main' will b
 ```
 + Tada! Our game is showing the green color, it's our current world.
 
-But til now, everything seems boring, let's add some objects, with the <u>Shape</u> class!
+But until now, everything seems boring, let's add some objects, with the <u>Shape</u> class!
 <br>
 <br>
 <h1 name="first-shape">&bull; Making our first Shape🧍</h1>
@@ -128,15 +128,15 @@ const player = new Shape({
 });
 ```
 
-+ Here! We created our first shape, and it can drop too, nice. let's take outselfs to the next Step.
++ Here! We created our first shape, and it can drop too, nice. let's take ourselfs to the next Step.
 
 <h1 name="controls">&bull; 🕹️ Controls</h1>
-Hi again! glad you made it till here.
+Hi again! Glad you made it until here.
 
 We will learn how to make your object move using ***specific Keys***, easy, just follow
 what I do.
 
-+ Remeber the ***main function*** that we wrote last time? 
++ Remember the ***main function*** that we wrote last time? 
 We will now use it to get the ***key states***
 of the game, we will check if keys are *pressed*, if so, move the shape to the specific direction. We will do so by using the ``World.key.isPressed(keyString)`` function.
 
