@@ -199,7 +199,7 @@ The above copyright notice and this permission notice shall be included in all c
 [forks-shield]: https://img.shields.io/github/forks/rhpo/life.js?style=for-the-badge
 [forks-url]: https://github.com/rhpo/life.js/network/members
 [stars-shield]: https://img.shields.io/github/stars/rhpo/life.js?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[stars-url]: https://github.com/rhpo/life.js/stargazers
 [issues-shield]: https://img.shields.io/github/issues/rhpo/life.js?style=for-the-badge
 [issues-url]: https://github.com/rhpo/life.js/issues
 [license-shield]: https://img.shields.io/github/license/rhpo/life.js?style=for-the-badge
