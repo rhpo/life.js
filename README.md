@@ -62,6 +62,7 @@
 
 <hr>
 
+<br>
 <h2 name="news">&bull; 📰 News</h2>
 
 + ✅ Added the new <u>GameLoop</u> class, instead of ``setInterval`` or ``requestAnimationFrame``, you can use it for cross-browser compatibility, easier use and customizable FPS.
