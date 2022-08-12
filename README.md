@@ -34,6 +34,9 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+     <li>
+      <a href="#news">📰 News</a>
+    </li>
     <li>
       <a href="#about-the-project">🔍 About The Project</a>
     </li>
@@ -59,7 +62,7 @@
 
 <hr>
 
-<h2 name="about-the-project">&bull; 📰 News</h2>
+<h2 name="news">&bull; 📰 News</h2>
 
 + ✅ Added the new <u>GameLoop</u> class, instead of ``setInterval`` or ``requestAnimationFrame``, you can use it for cross-browser compatibility, easier use and customizable FPS.
 + ⛔ Temporarily disabled Shape Object rotation due to some visual issues, it will be fixed asap.
