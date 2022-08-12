@@ -45,7 +45,7 @@
 For this tutorial, we will need to import some tools to be able to make our game.
 + **Required Objects/Classes** &nbsp;&nbsp;&horbar; &nbsp;&nbsp;<u>World</u> &nbsp;&bull;&nbsp; <u>Shape</u> &nbsp;&bull;&nbsp; <u>GameLoop</u> .
 
-For sure, there is alot of tools in **LifeJS**, we will be representing the basic and nessesary ones. If you want to learn everything, do it yourself by reading our API.
+For sure, there is alot of tools in **LifeJS**, we will be representing the basic and necessary ones. If you want to learn everything, do it yourself by reading our API.
 + Importing requirements:
 
 ```js
@@ -85,9 +85,9 @@ const myWorld = new World({
 
 Nice! We created our first world! But why does it not appear yet? Oh! We didn't make the <u>Main</u> function that will make our world active and moving. Let's do it.
 
-+ **Remember:** The main function is a piece of code that will be called over and over to keep out world running contrinously, generally, it will be called 60 times per second, seems familliar right? it's the <u>FPS (FramePerSecond)</u> default number 🙂.
++ **Remember:** The main function is a piece of code that will be called over and over to keep out world running Continiously, generally, it'll be called 60 times per second, seems familiar right? it's the <u>FPS (FramePerSecond)</u> default number 🙂.
 
-We will first declare a constant that has the number of **FPS** (*FramesPerSecond*), lets say we want 60FPS.
+We will first declare a constant that has the number of **FPS** (*FramesPerSecond*), let's say we want *60FPS*.
 ```js
 const FPS = 60;
 ```
@@ -107,7 +107,7 @@ game.start();                       //   ⬅️ Start the loop, so 'main' will b
 ```
 + Tada! Our game is showing the green color, it's our current world.
 
-But til now, everything seems to be boring, let's add some objects, with the <u>Shape</u> class!
+But til now, everything seems boring, let's add some objects, with the <u>Shape</u> class!
 <br>
 <br>
 <h1 name="first-shape">&bull; Making our first Shape🧍</h1>
@@ -173,15 +173,15 @@ And you can also set a gravity vector in the ***World*** instance using the ``G:
 > Written by <a href="https://www.github.com/rhpo">@rhpo</a> with ❤️.
 
 [contributors-shield]: https://img.shields.io/github/contributors/rhpo/life.js?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/rhpo/life.js/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/rhpo/life.js?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[forks-url]: https://github.com/rhpo/life.js/network/members
 [stars-shield]: https://img.shields.io/github/stars/rhpo/life.js?style=for-the-badge
 [stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
 [issues-shield]: https://img.shields.io/github/issues/rhpo/life.js?style=for-the-badge
 [issues-url]: https://github.com/rhpo/life.js/issues
 [license-shield]: https://img.shields.io/github/license/rhpo/life.js?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[license-url]: https://github.com/rhpo/life.js/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [discord-shield]: https://img.shields.io/discord/1006994262174478377?color=7289da&label=Discord&logo=discord&logoColor=white&style=for-the-badge
 [discord-url]: https://discord.gg/XXa7PpnMbq
