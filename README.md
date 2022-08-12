@@ -59,6 +59,11 @@
 
 <hr>
 
+<h2 name="about-the-project">&bull; 📰 News</h2>
+
++ ✅ Added the new <u>GameLoop</u> class, instead of ``setInterval`` or ``requestAnimationFrame``, you can use it for cross-browser compatibility, easier use and customizable FPS.
++ ⛔ Temporarily disabled Shape Object rotation due to some visual issues, it will be fixed asap.
+
 <h2 name="about-the-project">&bull; 🔍 About The Project</h2>
 
 **LifeJS** is a JavaScript Library to make 2D Animated Browser games with a 
