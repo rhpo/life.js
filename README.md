@@ -96,7 +96,7 @@ highly flexible __API__.
 <br><br>
 
  ```bash
-npm install -g life.js # Installing LifeJS
+npm install -g life.js   #  COMING SOON...
 ```
 
 <strong name="web">
