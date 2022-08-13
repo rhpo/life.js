@@ -127,7 +127,7 @@ import { World as Level, Shape } from 'life.js' // TS
 <h1 name="examples">&bull; 🕹️ Code Examples</h1>
 
 ```js
-import { World, Shape } from 'path/to/life.js'
+import { World, Shape, GameLoop } from 'path/to/life.js'
 
 // Rotating Centered Square...
 const world = new World();
@@ -147,7 +147,8 @@ function main() {
    world.update();    // • Update The World on each Frame.
    square.rotate(1); //  • Rotate the Square.
 }
-setInterval(main, 1000 / FPS);
+const game = new GameLoop(main, FPS);
+game.start();
 ```
 
 See? As simple as that.
