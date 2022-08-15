@@ -172,7 +172,7 @@ const eventify = self => {
         self.events[event].push(listener)
     }
 
-    self.removeListener = removeEventListener = function (event, listener) {
+    self.removeListener = self.removeEventListener = function (event, listener) {
         let idx
 
         if (typeof self.events[event] === 'object') {
@@ -484,6 +484,7 @@ export class World {
                         o.emit('touchstart', e);
                     }
                 });
+                this.mouse.isLeftClicked = true;
             });
 
             this.canvas.addEventListener('touchend', e => {
@@ -494,12 +495,16 @@ export class World {
                         o.clicked = false;
                     }
                 });
+                this.emit('touchend', e);
+                this.mouse.isLeftClicked = false;
             });
 
             this.canvas.addEventListener('touchmove', e => {
                 this.HoveredObjects().forEach(o => {
                     o.emit('touchmove', e);
                 });
+                this.mouse.x = e.touches[0].clientX;
+                this.mouse.y = e.touches[0].clientY;
             });
 
             this.canvas.addEventListener('dblclick', e => {
