@@ -649,10 +649,10 @@ export class World {
         * ctx.scale(this.flip.x ? -1 : 1, this.flip.y ? -1 : 1);
         */
 
-        ctx.translate(props.x + props.width / 2, props.y + props.height / 2);
+        this.ctx.translate(props.x + props.width / 2, props.y + props.height / 2);
 
-        ctx.rotate(props.rotation * Math.PI / 180);
-        ctx.translate(-(props.x + props.width / 2), -(props.y + props.height / 2));
+        this.ctx.rotate(props.rotation * Math.PI / 180);
+        this.ctx.translate(-(props.x + props.width / 2), -(props.y + props.height / 2));
 
         ctx.globalAlpha = props.opacity;
 
