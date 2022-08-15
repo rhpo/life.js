@@ -654,7 +654,7 @@ export class World {
         this.ctx.rotate(props.rotation * Math.PI / 180);
         this.ctx.translate(-(props.x + props.width / 2), -(props.y + props.height / 2));
 
-        ctx.globalAlpha = props.opacity;
+        this.ctx.globalAlpha = props.opacity;
 
         switch (props.type) {
             case 'rectangle':
