@@ -6,7 +6,7 @@
 [![MIT License][license-shield]][license-url]
 [![Linkedin][linkedin-shield]][linkedin-url]
 [![Discord][discord-shield]][discord-url]
-
+ 
 # Life.JS &nbsp;&horbar;&nbsp; Gaming in JavaScript.
 <div align="center">
 <br>
