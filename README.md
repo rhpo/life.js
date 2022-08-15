@@ -66,7 +66,13 @@
 <h2 name="news">&bull; 📰 News</h2>
 
 + ✅ Added the new <u>GameLoop</u> class, instead of ``setInterval`` or ``requestAnimationFrame``, you can use it for cross-browser compatibility, easier use and customizable FPS.
-+ ⛔ Temporarily disabled Shape Object rotation due to some visual issues, it will be fixed asap.
++ ✅ Added full mouse control.
++ ✅ Added Exported Constants like ``Shapes, Cursors, Patterns, Events``.
++ ✅ Fixed some Intellisense issues.
++ ✅ Added Event emitters, and listeners to objects that are similar to DOM Events.
+
++ ~~⛔ Temporarily disabled Shape Object rotation due to some visual issues, it will be fixed asap.~~
++ ✅ Fixed Shape Object Rotation.
 
 <br>
 <h2 name="about-the-project">&bull; 🔍 About The Project</h2>
