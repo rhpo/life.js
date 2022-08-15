@@ -641,20 +641,8 @@ export class World {
             || window.navigator.msMaxTouchPoints;
 
         this.ctx.save();
-
-
-        /**
-         * flip object by keeping the same coordinates
-         *🪲 BUG: That's why Flipping is disabled,
-        * ctx.scale(this.flip.x ? -1 : 1, this.flip.y ? -1 : 1);
-        */
-
-        this.ctx.translate(props.x + props.width / 2, props.y + props.height / 2);
-
-        this.ctx.rotate(props.rotation * Math.PI / 180);
-        this.ctx.translate(-(props.x + props.width / 2), -(props.y + props.height / 2));
-
-        this.ctx.globalAlpha = props.opacity;
+        this.ctx.translate(props.x, props.y);
+        this.ctx.rotate(props.rotation);
 
         switch (props.type) {
             case 'rectangle':
