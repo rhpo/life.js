@@ -252,6 +252,8 @@ export class World {
 
         this.canvas = props.canvas || null;
         this.createWorld = defined(props.createWorld) ? props.createWorld : true;
+        this.isTouchDevice = this.isMobile = 'ontouchstart' in document.documentElement
+            || !!window.navigator.msMaxTouchPoints;
         this.allowContextMenu = defined(props.allowContextMenu) ? props.allowContextMenu : false;
         this.doc = props.doc || document;
         this.cursor = defined(props.cursor) ? props.cursor : 'default';
@@ -263,8 +265,8 @@ export class World {
             width: window.innerWidth,
             height: window.innerHeight
         }
-        this.hasLimits = this.hasLimits !== undefined ? this.hasLimits : true;
-        this.tag = this.tag || 'map';
+        this.hasLimits = props.hasLimits !== undefined ? this.hasLimits : true;
+        this.tag = props.tag || 'map';
         this.border = props.border || { width: 0, background: '#000', pattern: 'color' };
         this.sprites = this.sprites || {};
 
@@ -351,13 +353,14 @@ export class World {
                 this.canvas.oncontextmenu = e => e.preventDefault();
             }
 
-            this.hasLimits && [this.borderX, this.borderY, this.borderXW, this.borderYW].forEach(o => {
+            this.hasLimits === true && [this.borderX, this.borderY, this.borderXW, this.borderYW].forEach(o => {
                 this.register(new Shape({ ...o, physics: false }));
             });
 
 
             this.onLoad = c => window.addEventListener('load', c);
 
+            this.canvas.addEventListener('click', e => this.emit('click', e));
             this.doc.addEventListener('keydown', e => {
                 this.keys[e.key] = true;
             });
@@ -642,9 +645,6 @@ export class World {
         props.x2 = props.x2 !== undefined ? props.x2 : props.x;
         props.y2 = props.y2 !== undefined ? props.y2 : props.y;
 
-        this.isTouchDevice = this.isMobile = 'ontouchstart' in document.documentElement
-            || window.navigator.msMaxTouchPoints;
-
         this.ctx.save();
         this.ctx.translate(props.x, props.y);
         this.ctx.rotate(props.rotation);
@@ -701,6 +701,12 @@ export class World {
     }
 
     collision(a, b) {
+        if (b instanceof Array) {
+            return b.some(b => this.collision(a, b));
+        }
+        if (a instanceof Array) {
+            return a.some(a => this.collision(a, b));
+        }
         return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
     }
 
@@ -837,10 +843,17 @@ export class World {
             }
             optionalPrefixCallback && optionalPrefixCallback();
 
-            // organize the objects by their z-index
-            this.Objects = this.Objects.sort((a, b) => a.zIndex - b.zIndex);
+            this.Objects = this.Objects.sort((a, b) => {
+                // if a.tag is 'wall', place it at the top of the list,
+                // else if b.tag is 'wall', place it at the bottom of the list
+                // else if a.zIndex is higher, advance it by one
+                // else if b.zIndex is higher, advance it by one
+
+                if (a.tag === 'wall') return -1;
+                else if (b.tag === 'wall') return 1;
+                else return a.zIndex - b.zIndex;
+            });
             // make the objects with 'wall' tag first on the array
-            this.Objects = this.Objects.sort((a, b) => a.tag === 'wall' ? -1 : 1);
             this.Objects.forEach(o => {
                 if (o.physics) {
                     // if there is something under the object, do nothing
@@ -1030,6 +1043,12 @@ export class Shape {
         hovered: false,
         clicked: false,
         noCollisionWith: [],
+        lineCoordinates: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 0,
+        }
     }, isTemplate = false) {
         if (!world) throw new Error('BrainError: No world is initialized!');
 
@@ -1064,6 +1083,12 @@ export class Shape {
         this.background = props.background || '';
         this.rotation = props.rotation || 0;
         this.name = props.name || getRandomName();
+        this.lineCoordinates = props.lineCoordinates || {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 0,
+        };
         this.tag = props.tag || 'unknown';
         this.onCollision = props.onCollision || /* ((a, b) => console.log('Collided with:', b.name)); */ (() => { });
         this.onFinishCollision = props.onFinishCollision || /* ((a, b) => console.log('Finished colliding with:', b.name)); */(() => { });
@@ -1189,13 +1214,15 @@ export class Shape {
                 world.ctx.beginPath();
                 world.ctx.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 2, 0, 2 * Math.PI);
                 // arc cons
-                world.ctx.fillStyle = this.pattern || this.background;
+                world.ctx.fillStyle = this.background;
                 world.ctx.fill();
                 break;
             case 'line':
                 world.ctx.beginPath();
-                world.ctx.moveTo(this.x, this.y);
-                world.ctx.lineTo(this.x + this.width, this.y + this.height);
+                // line width
+                world.ctx.lineWidth = this.width;
+                world.ctx.moveTo(this.lineCoordinates.x1, this.lineCoordinates.y1);
+                world.ctx.lineTo(this.lineCoordinates.x2, this.lineCoordinates.y2);
                 world.ctx.strokeStyle = this.pattern || this.background;
                 world.ctx.stroke();
                 break;
@@ -1399,6 +1426,31 @@ export function LoadImage(src) {
     });
 }
 
+// export class Camera {
+//     constructor(x, y, width, height, zoom = 1) {
+//         this.x = x;
+//         this.y = y;
+//         this.width = width;
+//         this.height = height;
+//         this.zoom = zoom;
+//     }
+
+//     set(x, y, width, height, zoom) {
+//         this.x = x;
+//         this.y = y;
+//         this.width = width;
+//         this.height = height;
+//         this.zoom = zoom;
+//     }
+
+//     update() {
+//         world.Objects.forEach(o => {
+//             o.width = o.width / this.zoom;
+//             o.height = o.height / this.zoom;
+//         });
+//     }
+// }
+
 export function LoadAudio(src) {
     return new Promise((resolve, reject) => {
         const audio = new Audio();
@@ -1412,3 +1464,5 @@ export async function spritesBETA(spriteObj) {
         world.sprites[key] = await image(spriteObj[key]);
     }
 }
+
+// Written and maintained by @rhpo (github.com/rhpo) ❤️.
