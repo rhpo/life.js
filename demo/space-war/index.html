@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Space War | LifeJS</title>
+</head>
+<body>
+    <div id="gameOver">
+        <h1>GAME OVER!</h1>
+        <p>Your score is <span id="score"></span></p>
+        <button id="restart">Restart</button>
+    </div>
+    <div class="mobile-controls">
+        <button class="walk">
+            <img src="https://static.vecteezy.com/system/resources/previews/001/208/393/original/plane-png.png" alt="Walk">
+        </button>
+        <button class="shoot">
+            <img src="https://static.vecteezy.com/system/resources/previews/001/188/477/non_2x/fire-icon-png.png" alt="Shoot">
+        </button>
+    </div>
+    <script src="index.js" defer type="module"></script>
+</body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    * {
+        font-family: 'Press Start 2P', cursive;
+    }
+    html, body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    .mobile-controls {
+        display: none;
+        z-index: 9999;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        padding: 5px;
+    }
+
+    .mobile-controls button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gainsboro;
+        opacity: 0.5;
+    }
+    .mobile-controls button img {
+        width: 50px;
+        height: 50px;
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    canvas {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    #gameOver {
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+
+        display: none;
+    }
+
+    /* Make a 3D button click effect */
+    button {
+        cursor: pointer;
+        border-radius: 0;
+        border: 3.5px solid #fff;
+        outline: none;
+        background-color: transparent;
+        color: white;
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+    }
+
+    button:active {
+        transform: translateY(2px);
+    }
+</style>
+</html>
