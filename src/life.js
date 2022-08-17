@@ -265,7 +265,7 @@ export class World {
             width: window.innerWidth,
             height: window.innerHeight
         }
-        this.hasLimits = props.hasLimits !== undefined ? this.hasLimits : true;
+        this.hasLimits = defined(props.hasLimits) ? props.hasLimits : true;
         this.tag = props.tag || 'map';
         this.border = props.border || { width: 0, background: '#000', pattern: 'color' };
         this.sprites = this.sprites || {};
@@ -287,48 +287,49 @@ export class World {
             pattern: this.border.pattern,
             background: this.border.background,
             width: this.border.width,
-            height: this.height,
+            height: this.size.height,
             x: 0,
             y: 0,
             tag: 'border',
             border: this.border,
+            name: 'borderY',
         }
         this.borderX = {
             type: 'rectangle',
             pattern: this.border.pattern,
             background: this.border.background,
-            width: this.width,
+            width: this.size.width,
             height: this.border.width,
             x: 0,
             y: 0,
             tag: 'border',
+            name: 'borderX',
             border: this.border,
-
         }
         this.borderYW = {
             type: 'rectangle',
             pattern: this.border.pattern,
             background: this.border.background,
             width: this.border.width,
-            height: this.height,
-            x: this.width - this.border.width,
+            height: this.size.height,
+            x: this.size.width - this.border.width,
             y: 0,
             tag: 'border',
             border: this.border,
+            name: 'borderYW',
         }
 
         this.borderXW = {
             type: 'rectangle',
             pattern: this.border.pattern,
             background: this.border.background,
-            width: this.width,
+            width: this.size.width,
             height: this.border.width,
             x: 0,
-            y: this.height - this.border.width,
+            y: this.size.height - this.border.width,
             tag: 'border',
             name: 'borderXW',
             border: this.border,
-
         };
 
         if (this.createWorld === true) {
@@ -353,12 +354,35 @@ export class World {
                 this.canvas.oncontextmenu = e => e.preventDefault();
             }
 
-            this.hasLimits === true && [this.borderX, this.borderY, this.borderXW, this.borderYW].forEach(o => {
-                this.register(new Shape({ ...o, physics: false }));
+            (this.hasLimits === true) && [this.borderX, this.borderY, this.borderXW, this.borderYW].forEach(o => {
+                this.register(new Shape({ ...o, name: o.name, physics: false }));
             });
 
-
             this.onLoad = c => window.addEventListener('load', c);
+            this.onLoad(() => {
+                if (this.hasLimits === this.responsive === true) {
+                    window.addEventListener('resize', () => {
+                        this.getElementByName('borderY').setProps({
+                            width: world.width,
+                            height: this.border.width,
+                        });
+                        this.getElementByName('borderX').setProps({
+                            width: this.border.width,
+                            height: this.canvas.height,
+                        });
+                        this.getElementByName('borderYW').setProps({
+                            width: this.border.width,
+                            height: this.canvas.height,
+                            x: this.canvas.width - this.border.width,
+                        });
+                        this.getElementByName('borderXW').setProps({
+                            width: this.canvas.width,
+                            height: this.border.width,
+                            y: this.canvas.height - this.border.width,
+                        });
+                    });
+                }
+            })
 
             this.canvas.addEventListener('click', e => this.emit('click', e));
             this.doc.addEventListener('keydown', e => {
@@ -636,15 +660,14 @@ export class World {
         props.radius = props.radius || undefined;
         props.width = props.radius || props.width || 50;
         props.height = props.radius || props.height || 50;
-        props.x = props.x !== undefined ? props.x : this.canvas.width / 2;
-        props.y = props.y !== undefined ? props.y : this.canvas.height / 2;
-        props.rotation = props.rotation !== undefined ? props.rotation : 0;
+        props.x = defined(props.x) ? props.x : this.canvas.width / 2;
+        props.y = defined(props.y) ? props.y : this.canvas.height / 2;
+        props.rotation = defined(props.rotation) ? props.rotation : 0;
 
-        props.x1 = props.x1 !== undefined ? props.x1 : props.x;
-        props.y1 = props.y1 !== undefined ? props.y1 : props.y;
-        props.x2 = props.x2 !== undefined ? props.x2 : props.x;
-        props.y2 = props.y2 !== undefined ? props.y2 : props.y;
-
+        props.x1 = defined(props.x1) ? props.x1 : 0;
+        props.y1 = defined(props.y1) ? props.y1 : 0;
+        props.x2 = defined(props.x2) ? props.x2 : this.canvas.width / 2;
+        props.y2 = defined(props.y2) ? props.y2 : this.canvas.height / 2;
         this.ctx.save();
         this.ctx.translate(props.x, props.y);
         this.ctx.rotate(props.rotation);
@@ -720,6 +743,10 @@ export class World {
 
     getElementsByTagName(tag) {
         return this.Objects.filter(o => o.tag === tag);
+    }
+
+    getElementByName(name) {
+        return this.Objects.find(o => o.name === name);
     }
 
     getElementByTagName(tag) {
@@ -1022,6 +1049,7 @@ export class Shape {
         isBody: true,
         pattern: 'color',
         background: '',
+        name: 'Example',
         rotation: 0,
         name: getRandomName(),
         tag: 'unknown',
@@ -1069,7 +1097,7 @@ export class Shape {
         this.y = props.y || 0;
         this.noCollisionWith = defined(props.noCollisionWith) ? typeof props.noCollisionWith === 'string' ? [props.noCollisionWith] : props.noCollisionWith : [];
         this.radius = props.radius;
-        if (this.radius !== undefined) {
+        if (defined(this.radius)) {
             this.width = this.radius;
             this.height = this.radius;
 
@@ -1077,12 +1105,12 @@ export class Shape {
             this.width = props.width || 10;
             this.height = props.height || 10;
         }
-        this.isBody = props.isBody !== undefined ? props.isBody : true;
-        this.animate = props.animate !== undefined ? props.animate : true;
+        this.isBody = defined(props.isBody) ? props.isBody : true;
+        this.animate = defined(props.animate) ? props.animate : true;
         this.pattern = props.pattern || 'color';
         this.background = props.background || '';
         this.rotation = props.rotation || 0;
-        this.name = props.name || getRandomName();
+        this.name = defined(props.name) ? props.name : getRandomName();
         this.lineCoordinates = props.lineCoordinates || {
             x1: 0,
             y1: 0,
@@ -1093,11 +1121,11 @@ export class Shape {
         this.onCollision = props.onCollision || /* ((a, b) => console.log('Collided with:', b.name)); */ (() => { });
         this.onFinishCollision = props.onFinishCollision || /* ((a, b) => console.log('Finished colliding with:', b.name)); */(() => { });
         this.collitionObjects = [];
-        this.physics = props.physics !== undefined ? props.physics : true;
-        this.rebound = props.rebound !== undefined ? props.rebound : 0.9;
-        this.friction = props.friction !== undefined ? props.friction : 0.5;
+        this.physics = defined(props.physics) ? props.physics : true;
+        this.rebound = defined(props.rebound) ? props.rebound : 0.7;
+        this.friction = defined(props.friction) ? props.friction : 0.5;
 
-        this.border = props.border !== undefined ? props.border : {
+        this.border = defined(props.border) ? props.border : {
             background: 'transparent',
             width: 0,
         };
@@ -1265,6 +1293,13 @@ export class Shape {
 
     set(p, v) {
         this[p] = v;
+        return this;
+    }
+
+    setProps(props) {
+        for (let p in props) {
+            this[p] = props[p];
+        }
         return this;
     }
 
