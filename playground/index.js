@@ -22,57 +22,58 @@ window.MonacoEnvironment = {
 const template = `
 // Hello Life.JS!
 
-// Create a new world
 const world = new World({
     G: {
         x: 0,
         y: 1,
     },
-    background: 'palegreen',
-    hasLimits: false,
+    background: 'black',
+    hasLimits: true,
     responsive: true,
 });
 
-const getRandomColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16);
+const square = new Shape({
+  type: Shapes.Square,
 
-// Generating Random Shapes:
+  background: 'blue',
 
-var generatedCount = 0;
-setInterval(() => {
-  generatedCount++;
-  new Shape({
-    type: Shapes.Square,
-    radius: 30,
-    pattern: Patterns.Color,
-    background: getRandomColor(),
-    rebound: 0.5,
-    x: Math.random() * world.width,
-  });
-}, 400);
+  width: 50,
+  height: 50,
 
-world.canvas.onmousemove = e => world.mouse.isLeftClicked && world.HoveredObjects().filter(e => e.remove());
-
-// Make a Ground:
-new Shape({
-  background: 'black',
-  x: 0,
-  y: world.height - 15,
-  width: world.width,
-  height: 15,
   physics: false,
+
+  speed: 10
 });
+
+world.center(square);
 
 const game = new GameLoop(() => {
-  world.update();
-  Text({
-    text: 'Generated: ' + generatedCount,
-    x: 10,
-    y: 10,
-    fromEnd: true,
-    background: 'black',
-    font: 'Consolas',
+  world.update(() => {
+      Text({
+        text: 'Use arrow keys to move!',
+        x: 10,
+        y: 10,
+        fromEnd: true,
+        font: 'Inter, sans-serif'
+      });
   });
-});
+
+  if (world.key.isPressed('ArrowLeft')) {
+    square.move('left');
+  }
+  if (world.key.isPressed('ArrowRight')) {
+    square.move('right');
+  }
+  if (world.key.isPressed('ArrowUp')) {
+    square.move('up');
+  }
+  if (world.key.isPressed('ArrowDown')) {
+    square.move('down');
+  }
+
+  square.rotate(1)
+}, 120);
+
 game.start();
 `.substring(1);
 
