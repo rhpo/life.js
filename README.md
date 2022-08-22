@@ -70,6 +70,7 @@
 + ✅ Added Exported Constants like ``Shapes, Cursors, Patterns, Events``.
 + ✅ Fixed some Intellisense issues.
 + ✅ Added Event emitters, and listeners to objects that are similar to DOM Events.
++ ✅ Added <a href="https://rhpo.github.io/life.js/playground">Playground!</a> 🎮
 <br>
 
 + ~~⛔ Temporarily disabled Shape Object rotation due to some visual issues, it will be fixed asap.~~
