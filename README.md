@@ -76,6 +76,9 @@
 + ~~⛔ Temporarily disabled Shape Object rotation due to some visual issues, it will be fixed asap.~~
 + ✅ Fixed Shape Object Rotation.
 
++ ~~⛔ Temporarily disabled Shape Flipping due to some visual issues, it will be fixed asap.~~
++ ✅ Fixed Shape Flipping at different axis.
+
 <br>
 <h2 name="about-the-project">&bull; 🔍 About The Project</h2>
 
