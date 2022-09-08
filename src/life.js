@@ -1,3 +1,36 @@
+/*!
+ * LifeJS Game Engine v1.0.7
+ * https://github.com/rhpo/life.js
+ *
+ * Author: Ramy Hadid
+ *
+ * Copyright (C) 2022 LifeJS. All rights reserved.
+ * Released under the MIT license
+ * Licence: Copyright 2022 ODromo.
+ *
+ * Permission is hereby granted, free of charge, to any  person  obtaining  a  copy  of  this  software
+ * and associated documentation files (the "Software"), to deal in  the  Software  without  restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+
+ * The above copyright notice and this permission  notice shall be included in all copies or substantial
+ * portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT  NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES  OR  OTHER  LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR  IN  CONNECTION  WITH  THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * Date: Mon Sep 05 2022 17:59:03 GMT+0100 (GMT+02:00)
+ *
+ * #free_palestine  🇵🇸
+ * #free_ukraine    🇺🇦
+ *
+ * ﷽
+*/
+
 export const id = () => Math.random().toString(36).substring(2, 9),
   getRandomName = () => {
     const namelist =
