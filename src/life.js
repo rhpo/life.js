@@ -499,9 +499,9 @@ export class World {
       //         image: Image
       //     }
 
-      this.mousedown = props.mousedown || (() => {});
-      this.mouseup = props.mouseup || (() => {});
-      this.mousemove = props.mousemove || (() => {});
+      this.mousedown = props.mousedown || (() => { });
+      this.mouseup = props.mouseup || (() => { });
+      this.mousemove = props.mousemove || (() => { });
 
       this.canvas.addEventListener("mousedown", (e) => this.mousedown(e));
       this.canvas.addEventListener("mouseup", (e) => this.mouseup(e));
@@ -1162,8 +1162,8 @@ export class Shape {
       rotation: 0,
       name: getRandomName(),
       tag: "unknown",
-      onCollision: () => {},
-      onFinishCollision: () => {},
+      onCollision: () => { },
+      onFinishCollision: () => { },
       physics: true,
       rebound: 0.9,
       friction: 0.5,
@@ -1198,9 +1198,9 @@ export class Shape {
     this.flip = defined(props.flip)
       ? props.flip
       : {
-          x: false,
-          y: false,
-        };
+        x: false,
+        y: false,
+      };
 
     this.opacity = defined(props.opacity) ? props.opacity : 1;
     this.hovered = false;
@@ -1236,10 +1236,10 @@ export class Shape {
     this.tag = props.tag || "unknown";
     this.onCollision =
       props.onCollision ||
-      /* ((a, b) => console.log('Collided with:', b.name)); */ (() => {});
+      /* ((a, b) => console.log('Collided with:', b.name)); */ (() => { });
     this.onFinishCollision =
       props.onFinishCollision ||
-      /* ((a, b) => console.log('Finished colliding with:', b.name)); */ (() => {});
+      /* ((a, b) => console.log('Finished colliding with:', b.name)); */ (() => { });
     this.collitionObjects = [];
     this.physics = defined(props.physics) ? props.physics : true;
     this.rebound = defined(props.rebound) ? props.rebound : 0.7;
@@ -1248,9 +1248,9 @@ export class Shape {
     this.border = defined(props.border)
       ? props.border
       : {
-          background: "transparent",
-          width: 0,
-        };
+        background: "transparent",
+        width: 0,
+      };
 
     this.id = id();
 
@@ -1337,7 +1337,7 @@ export class Shape {
     ctx.scale(this.flip.x ? -1 : 1, this.flip.y ? -1 : 1);
     ctx.translate(-(this.x - this.width / 2), -(this.y + this.width / 2));
 
-    ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+    ctx.translate(this.x - this.width, this.y + this.height / 2);
 
     ctx.rotate((this.rotation * Math.PI) / 180);
     ctx.translate(-(this.x + this.width / 2), -(this.y + this.height / 2));
@@ -1521,7 +1521,7 @@ export class Shape {
 }
 
 export class Animation {
-  #_onFinish = () => {};
+  #_onFinish = () => { };
   constructor(target, speed = 100, loop = true, ...frames) {
     if (!target) throw new Error("ArgumentError: No target found!");
     if (!frames || !frames.length)
@@ -1531,7 +1531,7 @@ export class Animation {
     this.frames = frames;
     this.currentFrame = 0;
     this.isPlaying = true;
-    this.#_onFinish = () => {};
+    this.#_onFinish = () => { };
 
     setInterval(() => {
       if (this.isPlaying) {
