@@ -156,7 +156,7 @@ setResult(`
         }
       </style>
       <script type="module">
-        import { World, Text, Animation, Shape, PreSufixedRange, Shapes, Patterns, Events, Cursors, GameLoop, LoadImage, LoadAudio } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js';
+        import { World, Text, Animation, Shape, PreSuffixedRange, Shapes, Patterns, Events, Cursors, GameLoop, LoadImage, LoadAudio } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js';
         ${template}
       </script>
     </body>
