@@ -8,7 +8,7 @@ import {
     Shapes,
     Cursors,
     Text,
-    PreSufixedRange,
+    PreSuffixedRange,
     Animation,
     deg,
 } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?';
