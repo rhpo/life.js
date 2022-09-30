@@ -162,6 +162,7 @@ Type: [Function][41]
 
 Returns **[Array][43]\<Shape>** The generated Objects Array.
 
+## Shape
 ## constructor
 
 ### Parameters
