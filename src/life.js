@@ -30,7 +30,6 @@
  *
  * ﷽
 */
-
 export const id = () => Math.random().toString(36).substring(2, 9),
     getRandomName = () => {
         const nameList =
@@ -267,7 +266,10 @@ export class World {
         props = {
             canvas: null,
             doc: document,
-            G: { x: 0, y: 0.001 },
+            G: {
+                x: 0,
+                y: 0.001
+            },
             pattern: "color",
             background: "#000",
             size: {
@@ -276,7 +278,11 @@ export class World {
             },
             hasLimits: true,
             tag: "map",
-            border: { width: 1, background: "#000", pattern: "color" },
+            border: {
+                width: 1,
+                background: "#000",
+                pattern: "color"
+            },
             sprites: {},
             onmousemove: null,
             onclick: null,
@@ -295,12 +301,15 @@ export class World {
         this.isTouchDevice = this.isMobile =
             "ontouchstart" in document.documentElement ||
             !!window.navigator.msMaxTouchPoints;
-        this.allowContextMenu = defined(props.allowContextMenu)
-            ? props.allowContextMenu
-            : false;
+        this.allowContextMenu = defined(props.allowContextMenu) ?
+            props.allowContextMenu :
+            false;
         this.doc = props.doc || document;
         this.cursor = defined(props.cursor) ? props.cursor : "default";
-        this.G = props.G || { x: 0, y: 0.001 };
+        this.G = props.G || {
+            x: 0,
+            y: 0.001
+        };
         this.pattern = props.pattern || "color";
         this.background = props.background || "#000";
         this.color = props.color || "#fff";
@@ -317,7 +326,10 @@ export class World {
         };
         this.sprites = this.sprites || {};
 
-        this.G = props.G || { x: 0, y: 0.001 };
+        this.G = props.G || {
+            x: 0,
+            y: 0.001
+        };
         this.Objects = [];
         this.keys = {};
 
@@ -401,12 +413,15 @@ export class World {
                 this.canvas.oncontextmenu = (e) => e.preventDefault();
             }
 
-            this.hasLimits === true &&
-                [this.borderX, this.borderY, this.borderXW, this.borderYW].forEach(
-                    (o) => {
-                        this.register(new Shape({ ...o, name: o.name, physics: false }));
-                    }
-                );
+            this.hasLimits === true && [this.borderX, this.borderY, this.borderXW, this.borderYW].forEach(
+                (o) => {
+                    this.register(new Shape({
+                        ...o,
+                        name: o.name,
+                        physics: false
+                    }));
+                }
+            );
 
             this.onLoad = (c) => window.addEventListener("load", c);
             this.onLoad(() => {
@@ -656,7 +671,6 @@ export class World {
     }
 
     /**
-     *
      * @param {Shape} ob Object
      * @param {bool} disaVel Reset Velocity
      */
@@ -671,8 +685,12 @@ export class World {
         }
     }
 
+    /**
+     * @param {Shape} ob Object
+     * @param {bool} disaVel Reset Velocity
+     */
     centerX(ob, disaVel = false) {
-        ob.x = this.canvas.width / 2;
+        ob.x = this.canvas.width / 2 - ob.width / 2;
         if (disaVel) {
             ob.velocity = {
                 x: 0,
@@ -681,8 +699,12 @@ export class World {
         }
     }
 
+    /**
+     * @param {Shape} ob Object
+     * @param {bool} disaVel Reset Velocity
+     */
     centerY(ob, disaVel = false) {
-        ob.y = this.canvas.height / 2;
+        ob.y = this.canvas.height / 2 - ob.height / 2;
         if (disaVel) {
             ob.velocity = {
                 x: 0,
@@ -929,7 +951,7 @@ export class World {
         }
     }
 
-    update(optionalPrefixCallback = null) {
+    update(optionalPrefixCallback = null, optionalSuffixCallback = null) {
         if (!this.paused) {
             this.ctx.clearRect(0, 0, this.width, this.height);
 
@@ -1006,17 +1028,29 @@ export class World {
                 }
                 o.draw();
             });
+
+            optionalSuffixCallback && optionalSuffixCallback();
         }
     }
 
+    /**
+     * The function pauses the game.
+     */
     pause() {
         this.paused = true;
     }
 
+    /**
+     * The function resume() sets the paused variable to false.
+     */
     resume() {
         this.paused = false;
     }
 
+    /**
+     * It returns an object with the x and y coordinates of the mouse cursor.
+     * @returns An object with two properties, x and y.
+     */
     getCursorPosition() {
         return {
             x: this.mouse.x,
@@ -1056,6 +1090,10 @@ export class World {
         return res;
     }
 
+    /**
+     * Return all objects in the world that are under the mouse.
+     * @returns The objects that are being hovered over.
+     */
     HoveredObjects() {
         return world.Objects.filter((o) => {
             return (
@@ -1067,6 +1105,10 @@ export class World {
         });
     }
 
+    /**
+     * Return all objects that are not hovered over by the mouse.
+     * @returns The objects that are not being hovered over.
+     */
     UnhoveredObjects() {
         return world.Objects.filter((o) => {
             return (
@@ -1078,6 +1120,10 @@ export class World {
         });
     }
 
+    /**
+     * THIS IS BETA || UNDER CONSTRUCTION ! PLEASE DO NOT USE IT
+     * @param {*} exceptObject
+     */
     getEmptySpace(exceptObject) {
         const emptySpaceRanges = [];
         let occupied = [];
@@ -1173,7 +1219,10 @@ export class Shape {
             friction: 0.5,
             id: id(),
             speed: 3,
-            velocity: { x: 0, y: 0 },
+            velocity: {
+                x: 0,
+                y: 0
+            },
             border: {
                 background: "blue",
                 width: 2,
@@ -1201,9 +1250,9 @@ export class Shape {
 
         this.type = props.type || "rectangle";
         this.zIndex = defined(props.zIndex) ? props.zIndex : 0;
-        this.flip = defined(props.flip)
-            ? props.flip
-            : {
+        this.flip = defined(props.flip) ?
+            props.flip :
+            {
                 x: false,
                 y: false,
             };
@@ -1214,11 +1263,11 @@ export class Shape {
         this.background = props.color || "black";
         this.x = props.x || 0;
         this.y = props.y || 0;
-        this.noCollisionWith = defined(props.noCollisionWith)
-            ? typeof props.noCollisionWith === "string"
-                ? [props.noCollisionWith]
-                : props.noCollisionWith
-            : [];
+        this.noCollisionWith = defined(props.noCollisionWith) ?
+            typeof props.noCollisionWith === "string" ?
+                [props.noCollisionWith] :
+                props.noCollisionWith :
+            [];
         this.radius = props.radius;
         if (defined(this.radius)) {
             this.width = this.radius;
@@ -1242,18 +1291,20 @@ export class Shape {
         this.tag = props.tag || "unknown";
         this.onCollision =
             props.onCollision ||
-      /* ((a, b) => console.log('Collided with:', b.name)); */ (() => { });
+            /* ((a, b) => console.log('Collided with:', b.name)); */
+            (() => { });
         this.onFinishCollision =
             props.onFinishCollision ||
-      /* ((a, b) => console.log('Finished colliding with:', b.name)); */ (() => { });
+            /* ((a, b) => console.log('Finished colliding with:', b.name)); */
+            (() => { });
         this.collisionObjects = [];
         this.physics = defined(props.physics) ? props.physics : true;
         this.rebound = defined(props.rebound) ? props.rebound : 0.7;
         this.friction = defined(props.friction) ? props.friction : 0.5;
 
-        this.border = defined(props.border)
-            ? props.border
-            : {
+        this.border = defined(props.border) ?
+            props.border :
+            {
                 background: "transparent",
                 width: 0,
             };
@@ -1263,7 +1314,10 @@ export class Shape {
         this.cacheDirection = "up";
 
         this.speed = props.speed || 3;
-        this.velocity = props.velocity || { x: 0, y: 0 };
+        this.velocity = props.velocity || {
+            x: 0,
+            y: 0
+        };
 
         this.scale = defined(props.scale) ? props.scale : 1;
 
@@ -1309,21 +1363,38 @@ export class Shape {
         this.collisionObjects.push(object);
     }
 
+    /**
+     * If the object's id matches the id of the object in the array, remove it from the array.
+     * @param object - The object that the player is colliding with.
+     */
     finishCollideWith(object) {
         this.collisionObjects.forEach(
             (o, i) => o.id === object.id && this.collisionObjects.splice(i, 1)
         );
     }
 
+    /**
+     * This function sets the velocity of the player to the x and y values passed in as parameters.
+     * @param x - The x-coordinate of the velocity vector.
+     * @param y - The y coordinate of the ball
+     */
     setVelocity(x, y) {
         this.velocity.x = x;
         this.velocity.y = y;
     }
 
+    /**
+     * It rotates the object by the angle specified.
+     * @param angle - The angle to rotate the object by.
+     */
     rotate(angle) {
         this.rotation += angle;
     }
 
+    /**
+     * This function sets the rotation of the object to the angle passed in.
+     * @param angle - The angle to rotate the object to.
+     */
     setRotation(angle) {
         this.rotation = angle;
     }
@@ -1429,20 +1500,55 @@ export class Shape {
         world.ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
 
+    /**
+     * The remove() function removes the object from the world.
+     */
     remove() {
         world.unregister(this);
     }
 
+    /**
+     * Use case: World.generateMap parameter
+     * @returns The object itself.
+     */
     result() {
         return this;
     }
 
+    /**
+     * "If the x or y value of the object is less than 0 or greater than the width or height of the world,
+     * return true."
+     *
+     * The function isOutOfMap() is called in the update() function of the object
+     * @returns The return statement is returning a boolean value.
+     */
     isOutOfMap() {
         return (
             this.x < 0 || this.x > world.width || this.y < 0 || this.y > world.height
         );
     }
 
+    /**
+     * "If the x or y value of the current point is less than the start of the range or greater than the
+     * end of the range, then the point is out of range."
+     *
+     * The function isOutOfRange() takes a range object as an argument. The range object has a start and
+     * end property. The function returns true if the x or y value of the current point is less than the
+     * start of the range or greater than the end of the range.
+     *
+     * The function isOutOfRange() is called in the following code:
+     *
+     *
+     * Example:
+     *
+     * ```js
+     *     if (point.isOutOfRange(range)) {
+     *         console.log("Point is out of range");
+     *     }
+     * ```
+     * @param range - { start: 0, end: 100 }
+     * @returns The return value is a boolean.
+     */
     isOutOfRange(range) {
         return (
             this.x < range.start ||
@@ -1452,15 +1558,35 @@ export class Shape {
         );
     }
 
+    /**
+     * It returns the value of the property of the object that is passed as the argument.
+     * @param p - The property name to get.
+     * @returns The value of the property.
+     */
     get(p) {
         return this[p];
     }
 
+    /**
+     * Set(p, v) {
+     *         this[p] = v;
+     *         return this;
+     *     }
+     * @param p - The property name
+     * @param v - the value to set the property to
+     * @returns The object itself.
+     */
     set(p, v) {
         this[p] = v;
         return this;
     }
 
+    /**
+     * It takes an object and sets the properties of the object it's called on to the properties of the
+     * object passed in.
+     * @param props - An object containing the properties to set.
+     * @returns The object itself.
+     */
     setProps(props) {
         for (let p in props) {
             this[p] = props[p];
@@ -1468,6 +1594,16 @@ export class Shape {
         return this;
     }
 
+    /**
+     * It moves the object in the direction specified by the first argument, and if the second argument
+     * is not null, it uses that as the speed, otherwise it uses the object's speed.
+     *
+     * @param direction - The direction you want the object to move in.
+     * @param [optionalSpeed=null] - The speed you want the object to move at. If you don't specify
+     * this, it will use the object's speed.
+     * @param [noMatterCollision=false] - If true, the object will move even if it collides with
+     * another object.
+     */
     move(direction, optionalSpeed = null, noMatterCollision = false) {
         this.cacheDirection = direction;
         var movingSpeed = optionalSpeed !== null ? optionalSpeed : this.speed;
@@ -1491,6 +1627,15 @@ export class Shape {
         world.preventCollision(this, world.Objects);
     }
 
+    /**
+     * It moves the object in the direction of the angle, and prevents it from colliding with other
+     * objects
+     * @param angle - The angle in degrees to move the object.
+     * @param [optionalSpeed=null] - The speed at which the object will move. If not defined, the
+     * object will move at its default speed.
+     * @param [noMatterCollision=false] - If true, the object will move even if it collides with
+     * another object.
+     */
     moveTheta(angle, optionalSpeed = null, noMatterCollision = false) {
         var movingSpeed = defined(optionalSpeed) ? optionalSpeed : this.speed;
         this.x += Math.cos(angle * deg) * movingSpeed;
@@ -1498,6 +1643,10 @@ export class Shape {
         world.preventCollision(this, world.Objects);
     }
 
+    /**
+     * This function makes the object follow the target object.
+     * @param target - The object that the enemy will follow.
+     */
     follow(target) {
         const x = target.x - this.x;
         const y = target.y - this.y;
@@ -1507,15 +1656,40 @@ export class Shape {
         world.preventCollision(this, world.Objects);
     }
 
+    /**
+     * "This function takes a callback function as an argument and assigns it to the onCollision property
+     * of the object it is called on."
+     *
+     * The function is called on an object, and it takes a callback function as an argument. The callback
+     * function is assigned to the onCollision property of the object.
+     *
+     * The function returns the object it was called on.
+     * @param callback - The function to call when a collision occurs.
+     * @returns The object itself.
+     */
     onCollide(callback) {
         this.onCollision = callback;
         return this;
     }
 
+    /**
+     * If the distance between the center of the two objects is less than the sum of their radii, then
+     * they are colliding.
+     * @param target - The target object to check collision against.
+     * @returns The return value is a boolean value.
+     */
     isCollidingWith(target) {
         return world.collision(this, target);
     }
 
+    /**
+     * "If the id of the object in the array is the same as the id of the target object, then return
+     * true."
+     *
+     * The function is called in the following way:
+     * @param target - The object you want to check if it's in the collisionObjects array.
+     * @returns a boolean value.
+     */
     CCHas(target) {
         var res = false;
         this.collisionObjects.forEach((o) => {
@@ -1524,6 +1698,11 @@ export class Shape {
         return res;
     }
 
+    /**
+     * The jump function takes in a parameter called howHigh and sets the y velocity to the negative of
+     * howHigh.
+     * @param howHigh - How high the player should jump.
+     */
     jump(howHigh) {
         this.velocity.y = -howHigh;
     }
@@ -1571,10 +1750,18 @@ export class Animation {
     }
 }
 
+/**
+ * For each key in the object, call the pause() method on the value.
+ * @param so - the sound object
+ */
 export const stopAllSounds = (so) => {
     Object.keys(so).forEach((k) => so[k].pause());
 };
 
+/**
+ * It draws text on the canvas
+ * @param [p] - The parameters of the text.
+ */
 export function Text(
     p = {
         text: "",
@@ -1601,7 +1788,8 @@ export function Text(
 
     world.ctx.font = p.size + " " + p.font;
     switch (p.type) {
-        default: case "fill":
+        default:
+        case "fill":
             world.ctx.fillStyle = p.background;
             if (p.fromEnd) {
                 world.ctx.fillText(
@@ -1677,7 +1865,7 @@ export function LoadAudio(src) {
  * @param {object} spriteObj Sprites Object
  * @returns Promise
  *
- * !: THIS IS BETA!
+ * !: THIS IS BETA
  */
 export function spritesBETA(spriteObj) {
     return new Promise(async r => {
