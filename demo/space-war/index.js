@@ -141,7 +141,7 @@ for (const key in images) {
     images[key] = await LoadImage(images[key]);
 }
 
-const damageImages = PreSufixedRange('./assets/damage/frame_', '.png', 0, 7);
+const damageImages = PreSuffixedRange('./assets/damage/frame_', '.png', 0, 7);
 for (const key in damageImages) {
     damageImages[key] = await LoadImage(damageImages[key]);
 }
