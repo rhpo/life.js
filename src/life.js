@@ -1,5 +1,5 @@
 /*!
- * LifeJS Game Engine v1.0.7
+ * LifeJS Game Engine v1.0.8
  * https://github.com/rhpo/life.js
  *
  * Author: Ramy Hadid
