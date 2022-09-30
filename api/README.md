@@ -250,7 +250,8 @@ Returns **any** Audio
 
 *   `spriteObj` **[object][44]** Sprites Object
 
-Returns **any** Promise!: THIS IS BETA!
+Returns **any** Promise
+*THIS IS BETA!*
 
 [1]: #constructor
 
