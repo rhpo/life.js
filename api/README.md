@@ -341,3 +341,18 @@ Returns **any** Promise!: THIS IS BETA!
 [46]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
 [47]: https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D
+
+[contributors-shield]: https://img.shields.io/github/contributors/rhpo/life.js?style=for-the-badge
+[contributors-url]: https://github.com/rhpo/life.js/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/rhpo/life.js?style=for-the-badge
+[forks-url]: https://github.com/rhpo/life.js/network/members
+[stars-shield]: https://img.shields.io/github/stars/rhpo/life.js?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/rhpo/life.js?style=for-the-badge
+[issues-url]: https://github.com/rhpo/life.js/issues
+[license-shield]: https://img.shields.io/github/license/rhpo/life.js?style=for-the-badge
+[license-url]: https://github.com/rhpo/life.js/blob/master/LICENSE
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[discord-shield]: https://img.shields.io/discord/1006994262174478377?color=7289da&label=Discord&logo=discord&logoColor=white&style=for-the-badge
+[discord-url]: https://discord.gg/XXa7PpnMbq
+[linkedin-url]: https://www.linkedin.com/in/ramy-hadid-15aa70243/
