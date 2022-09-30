@@ -1,4 +1,5 @@
-import { Animation, LoadImage, LoadAudio, Shape, Text, World, GameLoop } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js';
+import { Animation, LoadImage, LoadAudio, Shape, Text, World, GameLoop } from './life.min.js';
+
 
 const images = {
     ground: './assets/ground.png',
@@ -65,7 +66,6 @@ const world = new World({
         width: 1,
         pattern: 'color',
         background: 'transparent',
-
     }
 });
 
@@ -80,10 +80,12 @@ const player = new Shape({
     width: 24,
     height: 32,
     friction: 0.99,
-    rebound: 0.0000001,
+    rebound: 0,
     physics: true,
     speed: 4.5,
     rotation: 0,
+    zIndex: 99999,
+    friction: 0
 });
 
 world.center(player);
@@ -143,6 +145,7 @@ var generatedObjects = world.generateMap([
             isBody: true,
             tag: 'enemy',
             speed: 0.35,
+            zIndex: 99999,
         }).result();
     },
     '+': e => {
@@ -159,7 +162,7 @@ var generatedObjects = world.generateMap([
             physics: false,
             isBody: true,
             tag: 'finish',
-            zIndex: 999
+            zIndex: 999,
         }).result();
     }
 });
@@ -178,7 +181,7 @@ target.forEach(t => {
         }
     }
 
-    new Animation(t, 1000, images.finish, images.finish2);
+    new Animation(t, 1000, true, images.finish, images.finish2);
 });
 
 var lastDirection = 'right';
@@ -203,11 +206,11 @@ function gameOver() {
     }, 1000);
 }
 
-const movingRAnimation = new Animation(player, 80, images.moving1R, images.moving2R, images.moving3R);
-const movingLAnimation = new Animation(player, 80, images.moving1L, images.moving2L, images.moving3L);
+const movingRAnimation = new Animation(player, 80, true, images.moving1R, images.moving2R, images.moving3R);
+const movingLAnimation = new Animation(player, 80, true, images.moving1L, images.moving2L, images.moving3L);
 
 ais.forEach(ai => {
-    new Animation(ai, 200, images.ai1, images.ai2);
+    new Animation(ai, 200, true, images.ai1, images.ai2);
     ai.onCollision = async who => {
         if (who === player) {
 
@@ -217,11 +220,10 @@ ais.forEach(ai => {
                 sounds.kill.play();
                 ai.isBody = false;
                 ai.jump(10);
-                new Animation(ai, 30, images.ai1, images.ai2blue);
+                player.velocity.y -= (100);
+                new Animation(ai, 30, true, images.ai1, images.ai2blue);
                 score++;
-            } else {
-                gameOver();
-            }
+            } else gameOver();
         }
     }
     ai.deltaX = 0;
@@ -266,7 +268,6 @@ function main() {
     var imr = world.key.isPressed('ArrowRight');
     var iml = world.key.isPressed('ArrowLeft');
     var imu = world.key.isPressed('ArrowUp');
-    var imd = world.key.isPressed('ArrowDown');
     var imj = world.key.isPressed(' ');
 
     if (!isGameOver) {
@@ -320,7 +321,9 @@ function main() {
 
     });
 
-    world.update();
+    world.update(() => {
+    });
+
     Text({
         text: 'Score: ' + score,
         x: 5,
@@ -328,6 +331,7 @@ function main() {
         background: 'white',
         type: 'fill',
         size: '30px',
+        zIndex: 9999999
     });
 }
 
