@@ -125,7 +125,7 @@ function createEditor(editorContainer) {
         }
       </style>
       <script type="module">
-        import { Animation, World, Shape, PreSufixedRange, Shapes, Patterns, Events, Cursors, GameLoop, LoadImage, LoadAudio, Text } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js';
+        import { Animation, World, Shape, PreSuffixedRange, Shapes, Patterns, Events, Cursors, GameLoop, LoadImage, LoadAudio, Text } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js';
         ${editor.getValue()}
       </script>
     </body>
