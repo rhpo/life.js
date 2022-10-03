@@ -232,16 +232,16 @@ function main() {
 
 window.addEventListener('load', e => {
     document.querySelector('.left').addEventListener('touchstart', e => {
-        snakeMove('left');
+        snake[0].cacheDirection !== 'right' && snakeMove('left');
     });
     document.querySelector('.right').addEventListener('touchstart', e => {
-        snakeMove('right');
+        snake[0].cacheDirection !== 'left' && snakeMove('right');
     });
     document.querySelector('.up').addEventListener('touchstart', e => {
-        snakeMove('up');
+        snake[0].cacheDirection !== 'down' && snakeMove('up');
     });
     document.querySelector('.down').addEventListener('touchstart', e => {
-        snakeMove('down');
+        snake[0].cacheDirection !== 'up' && snakeMove('down');
     });
 });
 
