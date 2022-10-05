@@ -186,7 +186,7 @@ The above copyright notice and this permission notice shall be included in all c
 <br>
 <h1 name="contact">👋 Contact:</h1>
     <p>&bull; Email &nbsp;&horbar;&nbsp; <a href="mailto:lifejs@ramey.ml">lifejs@ramey.ml</a></p>
-    <p>&bull; Phone Number &nbsp;&horbar;&nbsp; <a href="tel+213553238410">+213 553 23 84 10</a></p>
+    <p>&bull; Phone Number &nbsp;&horbar;&nbsp; <a href="tel:+213553238410">+213 553 23 84 10</a></p>
     <p>&bull; Discord &nbsp;&horbar;&nbsp; <a href="https://discord.gg/XXa7PpnMbq">(Life.JS  ―  Gaming in JavaScript)</a></p>
 <br>
 <h1 name="about-author">👤 About the author:</h1>
