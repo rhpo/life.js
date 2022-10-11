@@ -1,5 +1,19 @@
 /*!
- * LifeJS Game Engine v1.0.8
+
+
+   *                *   
+   **               ***
+   ****             ***
+   *****            ***     
+   *******          ***
+   *********        ***
+   **********       ***
+   ************     ***
+   *************.   ***
+   ***************  ***
+
+
+ * LifeJS Game Engine v1.1.0
  * https://github.com/rhpo/life.js
  *
  * Author: Ramy Hadid
@@ -30,11 +44,11 @@
  *
  * ﷽
 */
+
 export const id = () => Math.random().toString(36).substring(2, 9),
-    getRandomName = () => {
-        const nameList =
-            "James/Robert/John/Michael/David/William/Richard/Thomas/Charles/Islam/Mohammed/Ramy";
-        let names = nameList.split("/");
+    randName = () => {
+        const nameList = "James.Robert.John.Michael.David.William.Richard.Thomas.Charles.Islam.Mohammed.Ramy";
+        let names = nameList.split(".");
         return names[Math.floor(Math.random() * names.length)];
     },
     defined = (e) => e !== undefined && e !== null,
@@ -49,6 +63,7 @@ export const Shapes = {
     Dot: "dot",
 };
 
+// Extension: For Assets.
 export const PreSuffixedRange = (pref = "", suf = "", start = 0, end) => {
     let obj = {};
     for (let i = start; i <= end; i++)
@@ -242,13 +257,6 @@ const eventify = (self) => {
     };
 };
 
-Array.prototype.replace = function (old, newVal) {
-    let idx = this.indexOf(old);
-    if (idx > -1) {
-        this[idx] = newVal;
-    }
-};
-
 // START OF THE LIFE.JS LIBRARY ---
 
 /**
@@ -320,7 +328,7 @@ export class World {
         this.hasLimits = defined(props.hasLimits) ? props.hasLimits : true;
         this.tag = props.tag || "map";
         this.border = props.border || {
-            width: 0,
+            width: 8,
             background: "#000",
             pattern: "color",
         };
@@ -391,7 +399,7 @@ export class World {
             border: this.border,
         };
 
-        if (this.createWorld === true) {
+        if (this.createWorld) {
             if (!this.canvas) {
                 this.canvas = this.doc.createElement("canvas");
                 this.canvas.width = this.size.width;
@@ -400,18 +408,17 @@ export class World {
             }
 
             if (this.responsive) {
-                var ta = () => {
+                const $lambda = () => {
                     this.width = window.innerWidth;
                     this.height = window.innerHeight;
                     this.canvas.width = this.width;
                     this.canvas.height = this.height;
                 };
-                window.addEventListener("resize", ta);
+                window.addEventListener("resize", $lambda);
             }
 
-            if (this.allowContextMenu === false) {
-                this.canvas.oncontextmenu = (e) => e.preventDefault();
-            }
+            this.canvas.oncontextmenu = (e) => !this.allowContextMenu && e.preventDefault();
+
 
             this.hasLimits === true && [this.borderX, this.borderY, this.borderXW, this.borderYW].forEach(
                 (o) => {
@@ -428,12 +435,12 @@ export class World {
                 if ((this.hasLimits === this.responsive) === true) {
                     window.addEventListener("resize", () => {
                         this.getElementByName("borderY").setProps({
-                            width: world.width,
-                            height: this.border.width,
+                            width: this.border.width,
+                            height: this.height,
                         });
                         this.getElementByName("borderX").setProps({
-                            width: this.border.width,
-                            height: this.canvas.height,
+                            width: this.canvas.width,
+                            height: this.border.width,
                         });
                         this.getElementByName("borderYW").setProps({
                             width: this.border.width,
@@ -649,7 +656,7 @@ export class World {
     destroy() {
         this.canvas && this.canvas.remove();
         this.Objects = [];
-        this && delete this;
+        this && delete this; 
         gameLoops.forEach((gl) => {
             gl.pause();
         });
@@ -1210,7 +1217,7 @@ export class Shape {
             background: "",
             name: "Example",
             rotation: 0,
-            name: getRandomName(),
+            name: randName(),
             tag: "unknown",
             onCollision: () => { },
             onFinishCollision: () => { },
@@ -1281,7 +1288,7 @@ export class Shape {
         this.pattern = props.pattern || "color";
         this.background = props.background || "";
         this.rotation = props.rotation || 0;
-        this.name = defined(props.name) ? props.name : getRandomName();
+        this.name = defined(props.name) ? props.name : randName();
         this.lineCoordinates = props.lineCoordinates || {
             x1: 0,
             y1: 0,
@@ -1692,9 +1699,7 @@ export class Shape {
      */
     CCHas(target) {
         var res = false;
-        this.collisionObjects.forEach((o) => {
-            o.id === target.id && (res = true);
-        });
+        this.collisionObjects.forEach((o) => o.id === target.id && (res = true));
         return res;
     }
 
