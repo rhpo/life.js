@@ -70,6 +70,7 @@
 + ✅ Added Exported Constants like ``Shapes, Cursors, Patterns, Events``.
 + ✅ Fixed some Intellisense issues.
 + ✅ Added Event emitters, and listeners to objects that are similar to DOM Events.
++ ✅ V1.1.0: Fixed World Limits
 + ✅ Added <a href="https://rhpo.github.io/life.js/playground">Playground!</a> 🎮
 <br>
 
