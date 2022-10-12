@@ -321,10 +321,7 @@ function main() {
 
     });
 
-    world.update(() => {
-    });
-
-    Text({
+    world.update(() => {}, () => Text({
         text: 'Score: ' + score,
         x: 5,
         y: world.height - 25,
@@ -332,7 +329,9 @@ function main() {
         type: 'fill',
         size: '30px',
         zIndex: 9999999
-    });
+    }));
+
+
 }
 
 // setInterval(() => player.rotate(1), 10);
