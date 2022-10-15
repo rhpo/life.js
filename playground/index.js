@@ -641,17 +641,6 @@ function createEditor(editorContainer) {
   
   var libUri = 'ts:filename/lifejs.d.ts';
   
-  monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-    noSemanticValidation: true,
-    noSyntaxValidation: false
-  });
-
-  // compiler options
-  monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
-    target: monaco.languages.typescript.ScriptTarget.ES6,
-    allowNonTsExtensions: true
-  });
-  
   monaco.languages.typescript.javascriptDefaults.addExtraLib(LIFEJS_D_TS, libUri);
   
   monaco.editor.createModel(LIFEJS_D_TS, 'typescript', monaco.Uri.parse(libUri));
