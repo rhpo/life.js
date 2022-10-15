@@ -637,10 +637,11 @@ require(["vs/editor/editor.main"], function () {
   createEditor(document.querySelector(".code"));
 });
 
-var libUri = 'ts:filename/lifejs.d.ts';
-monaco.languages.typescript.javascriptDefaults.addExtraLib(LIFEJS_D_TS, libUri);
-
 function createEditor(editorContainer) {
+  
+  var libUri = 'ts:filename/lifejs.d.ts';
+  monaco.languages.typescript.javascriptDefaults.addExtraLib(LIFEJS_D_TS, libUri);
+  
   let editor = monaco.editor.create(editorContainer, {
     value: template,
     language: "javascript",
