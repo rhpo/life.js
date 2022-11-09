@@ -29,7 +29,7 @@
    
 </div>
 
-</center>
+</center> 
 
 <details>
   <summary>Table of Contents</summary>
