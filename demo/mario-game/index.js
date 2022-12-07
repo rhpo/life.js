@@ -1,4 +1,4 @@
-import { Animation, LoadImage, LoadAudio, Shape, Text, World, GameLoop } from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?';
+import { Animation, LoadImage, LoadAudio, Shape, Text, World, GameLoop } from 'https://raw.githack.com/rhpo/life.js/main/src/life.min.js?';
 
 
 const images = {

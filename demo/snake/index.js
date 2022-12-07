@@ -8,7 +8,7 @@ import {
     LoadImage,
     LoadAudio,
     stopAllSounds
-} from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?';
+} from 'https://raw.githack.com/rhpo/life.js/main/src/life.min.js?';
 
 const images = {
     food: 'assets/apple.png',

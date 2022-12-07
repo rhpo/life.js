@@ -11,7 +11,7 @@ import {
     PreSuffixedRange,
     Animation,
     deg,
-} from 'https://gitcdn.link/cdn/rhpo/life.js/main/src/life.min.js?';
+} from 'https://raw.githack.com/rhpo/life.js/main/src/life.min.js?';
 
 var AXIS = {
     NONE: 1,
