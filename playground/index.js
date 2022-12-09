@@ -19,6 +19,17 @@ window.MonacoEnvironment = {
   },
 };
 
+monaco.languages.typescriptDefaults.setCompilerOptions(
+  {
+    noLib: true,
+    allowNonTsExtensions: true
+  });
+
+monaco.languages.typescript.javascriptDefaults.addExtraLib(
+  LIFEJS_D_TS,
+  "LIFEJS_D_TS"
+);
+
 const LIFEJS_D_TS = `
 /*!
 
@@ -638,13 +649,13 @@ require(["vs/editor/editor.main"], function () {
 });
 
 function createEditor(editorContainer) {
-  
+
   var libUri = 'ts:filename/lifejs.d.ts';
-  
+
   monaco.languages.typescript.javascriptDefaults.addExtraLib(LIFEJS_D_TS, libUri);
-  
+
   monaco.editor.createModel(LIFEJS_D_TS, 'typescript', monaco.Uri.parse(libUri));
-  
+
   let editor = monaco.editor.create(editorContainer, {
     value: template,
     language: "javascript",
