@@ -19,17 +19,6 @@ window.MonacoEnvironment = {
   },
 };
 
-monaco.languages.typescriptDefaults.setCompilerOptions(
-  {
-    noLib: true,
-    allowNonTsExtensions: true
-  });
-
-monaco.languages.typescript.javascriptDefaults.addExtraLib(
-  LIFEJS_D_TS,
-  "LIFEJS_D_TS"
-);
-
 const LIFEJS_D_TS = `
 /*!
 
@@ -447,7 +436,7 @@ export declare class Shape {
      *
      *
      * Example:
-     
+
      *     if (point.isOutOfRange(range)) {
      *         console.log("Point is out of range");
      *     }
@@ -651,6 +640,17 @@ require(["vs/editor/editor.main"], function () {
 function createEditor(editorContainer) {
 
   var libUri = 'ts:filename/lifejs.d.ts';
+
+  monaco.languages.typescriptDefaults.setCompilerOptions(
+    {
+      noLib: true,
+      allowNonTsExtensions: true
+    });
+
+  monaco.languages.typescript.javascriptDefaults.addExtraLib(
+    LIFEJS_D_TS,
+    "LIFEJS_D_TS"
+  );
 
   monaco.languages.typescript.javascriptDefaults.addExtraLib(LIFEJS_D_TS, libUri);
 
