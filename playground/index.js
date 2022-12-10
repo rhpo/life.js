@@ -641,11 +641,11 @@ function createEditor(editorContainer) {
 
   var libUri = 'ts:filename/lifejs.d.ts';
 
-  monaco.languages.typescriptDefaults.setCompilerOptions(
-    {
-      noLib: true,
-      allowNonTsExtensions: true
-    });
+  // monaco.languages.typescriptDefaults.setCompilerOptions(
+  //   {
+  //     noLib: true,
+  //     allowNonTsExtensions: true
+  //   });
 
   monaco.languages.typescript.javascriptDefaults.addExtraLib(
     LIFEJS_D_TS,
